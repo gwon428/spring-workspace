@@ -1,5 +1,6 @@
 package com.kh.di;
 
+// BeanFactory : 스프링이 제공하는 가장 기본적인 factory
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.FileSystemResource;

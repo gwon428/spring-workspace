@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- setter로 주입 -->
+	<bean id="user01" class="com.kh.domain.User">
+		<property name="userId" value="유저01"/>
+		<property name="password" value="0101"/>
+		<property name="age" value="20"/>
+	</bean>
+	
+	<!-- String도 클래스여서 생성자 가능 -> 생성자 주입 형태!! -->
+	<!-- 자바가 제공하고 있는 클래스도 주입 가능!
+		String : Java API 객체 단순 파라미터 값 주입
+	 -->
+	 <bean id="username" class="java.lang.String">
+	 	<constructor-arg value="유저02"/>
+	 </bean>
+	 
+	 <!-- 생성자 주입 -->
+	 <bean id="user02" class="com.kh.domain.User">
+	 	<constructor-arg name="userId" value="유저03"/>
+	 	<constructor-arg name="password" value="0202"/>
+	 </bean>
+	 
+	 <!-- 생성자 주입 : 파라미터 없는 기본 생성자 -->
+	 <bean id="user03" class="com.kh.domain.User">
+	 </bean>
+</beans>

@@ -9,7 +9,7 @@ public class HelloTestApp02 {
 		// HelloFactory는 싱글톤 패턴이기 때문에 new가 아니라 그냥 생성?
 		HelloFactory factory = HelloFactory.getInstance();
 
-		// 2. factory 객체로 parsing할 리소스(hello.properties) 전달
+		// 2. factory 객체로 parsing할 리소스(hello.properties) 전달 - 주문서
 		factory.setConfigResource("src/main/resources/config/hello.properties");
 		
 		// 3. factory한테 hello 이름을 갖는 Hello 객체 요청
