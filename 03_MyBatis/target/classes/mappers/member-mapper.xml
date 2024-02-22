@@ -4,26 +4,41 @@
 	<select id="showAllMember" resultType="Member">
 		SELECT * FROM member
 	</select>
-	
+
 	<!-- parameterType : 사용자에게 받아내는 타입 설정? -->
 	<insert id="registerMember" parameterType="Member">
-		INSERT INTO member VALUES (#{id}, #{password}, #{name})
+		INSERT INTO member
+		VALUES (#{id}, #{password}, #{name})
 	</insert>
-	
-	<!-- login : select, parameterType:Member, resultType="Member
-	WHERE id=#{id} AND password=#{1234}			-->
+
+	<!-- login : select, parameterType:Member, resultType="Member WHERE id=#{id} 
+		AND password=#{1234} -->
 	<select id="login" parameterType="Member" resultType="Member">
-		SELECT * FROM member WHERE id=#{id} AND password=#{password}
+		SELECT *
+		FROM member WHERE id=#{id} AND password=#{password}
 	</select>
-	
-	<!-- parameter 값 받은 것 명시 : #{id}, #{name} ...  -->
-	<!--  updateMember : update, parameterType:Member -->
+
+	<!-- parameter 값 받은 것 명시 : #{id}, #{name} ... -->
+	<!-- updateMember : update, parameterType:Member -->
 	<update id="updateMember" parameterType="Member">
-		UPDATE member SET password=#{password}, name=#{name} WHERE id=#{id}
+		UPDATE member SET
+		password=#{password}, name=#{name} WHERE id=#{id}
 	</update>
-	
-	<!--  findMember : select, parameterType : String, resultType:Member -->
-	<select id="find" parameterType="String" resultType="Member">
-		SELECT * FROM member WHERE name LIKE CONCAT('%',#{keyword},'%') OR id LIKE CONCAT('%',#{keyword},'%')
+
+	<!-- findMember : select, parameterType : String, resultType:Member -->
+	<select id="findMember" parameterType="SearchDTO" resultType="Member">
+		SELECT * FROM member
+		<where>
+			<if test="select == 'all'">
+				name LIKE CONCAT('%', #{keyword},'%') OR id LIKE
+				CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="select == 'id'">
+				id LIKE CONCAT('%', #{keyword},'%')
+			</if>
+			<if test="select == 'name'">
+				name LIKE CONCAT('%', #{keyword},'%')
+			</if>
+		</where>
 	</select>
 </mapper>

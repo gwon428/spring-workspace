@@ -17,7 +17,7 @@
 				<li>비밀번호 : ${sessionScope.member.password}</li>
 				<li>이름 : ${sessionScope.member.name}</li>
 			</ul>
-			<a href="/index.jsp">첫 페이지로 이동</a>
+			<a href="index.jsp">첫 페이지로 이동</a>
 		</c:when>
 		<c:otherwise>
 			<h2>로그인 실패..! 다시 로그인 해주세요</h2>

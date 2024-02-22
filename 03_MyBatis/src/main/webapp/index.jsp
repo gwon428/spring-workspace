@@ -18,19 +18,19 @@
 	Member member = (Member) session.getAttribute("member");
 	%>
 	<c:choose>
-		<c:when test="${empty member}">
-		<!-- 로그인 되어 있지 않을 때 -->
-		<li><a href="register">회원가입</a></li>
-		<li><a href="login">로그인</a></li>
-</c:when>
-			
+			<c:when test="${empty member}">
+				<!-- 로그인 되어 있지 않을 때 -->
+				<li><a href="register">회원가입</a></li>
+				<li><a href="login">로그인</a></li>
+			</c:when>
+
 			<c:otherwise>
-		<!--  로그인 되었을 때 -->
-		<li><a href="allMember">전체회원보기</a></li>
-		<li><a href="logout">로그아웃</a></li>
-		<li><a href="update">회원 정보 수정</a></li>
-		
-					</c:otherwise>
+				<!--  로그인 되었을 때 -->
+				<li><a href="allMember">전체회원보기</a></li>
+				<li><a href="logout">로그아웃</a></li>
+				<li><a href="update">회원 정보 수정</a></li>
+
+			</c:otherwise>
 		</c:choose>
 		
 	</ul>

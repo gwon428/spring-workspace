@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.model.dto.SearchDTO;
 import com.kh.model.vo.Member;
 
 @Repository
@@ -30,8 +31,8 @@ public class MemberDAO {
 		return session.update("memberMapper.updateMember", vo);
 	}
 
-	public List<Member> findMember(String keyword) {
-		return session.selectList("memberMapper.find", keyword);
+	public List<Member> findMember(SearchDTO search) {
+		return session.selectList("memberMapper.findMember", search);
 	}
 	
 }

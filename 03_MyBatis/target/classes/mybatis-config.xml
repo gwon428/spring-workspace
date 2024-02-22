@@ -6,6 +6,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.kh.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.kh.model.dto.SearchDTO" alias="SearchDTO"/>
 	</typeAliases>
 	
 	<!-- 쿼리문 -->

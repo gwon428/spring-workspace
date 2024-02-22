@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.model.dao.MemberDAO;
+import com.kh.model.dto.SearchDTO;
 import com.kh.model.vo.Member;
 
 @Service 	// 페이징 처리도 Service에서!
@@ -31,8 +32,11 @@ public class MemberService {
 		return dao.update(vo);
 	}
 
-	public List<Member> findMember(String keyword) {
-		return dao.findMember(keyword);
+	public List<Member> findMember(String keyword, String select) {
+		SearchDTO dto = new SearchDTO();
+		dto.setKeyword(keyword);
+		dto.setSelect(select);
+		return dao.findMember(dto);
 	}
 
 }

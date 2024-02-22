@@ -3,7 +3,6 @@ package com.kh.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,8 +77,12 @@ public class MemberController {
 	}
 	
 	@PostMapping("updateMember")
-	public String update(Member vo) {
-		service.updateMember(vo);
+	public String update(Member vo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		// && vo가 null이 아닐 경우 조건도 필요하긴 함
+		if(service.updateMember(vo)==1){
+			session.setAttribute("vo", vo);
+		}
 		return "redirect:/";
 	}
 	
@@ -90,9 +93,10 @@ public class MemberController {
 		return "search";
 	}
 	
-	@PostMapping("find")
-	public String find(Model model, String keyword){
-		List<Member> list = service.findMember(keyword);
+	@GetMapping("findMember")
+	public String find(Model model, String select, String keyword){
+		List<Member> list = service.findMember(keyword, select);
+		// 데이터 바인딩 (스프링이 제공하는 Model model)
 		model.addAttribute("list", list);
 		return "find_result";
 	}

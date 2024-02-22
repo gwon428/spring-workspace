@@ -8,9 +8,9 @@
 </head>
 <body>
 	<form action="updateMember" method="post">
-		아이디 : <input type="text" name="id" readonly value="${sessionScope.member.id}"> <br>
-		변경할 비밀번호 : <input type="password" name="password" value="${sessionScope.member.password}"> <br>
-		변경할 이름 : <input type="text" name="name" value="${sessionScope.member.name}">
+		아이디 : <input type="text" name="id" readonly value="${vo.id}"> <br>
+		변경할 비밀번호 : <input type="password" name="password" value="${vo.password}"> <br>
+		변경할 이름 : <input type="text" name="name" value="${vo.name}">
 		<input type="submit" value="변경!">
 	</form>
 </body>
