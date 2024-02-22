@@ -1,12 +1,17 @@
 package com.kh.model.vo;
 
-
 public class Member {
 	private String id;
 	private String password;
 	private String name;
-	
-	public Member() {}
+
+	public Member() {
+	}
+
+	public Member(String id, String password) {
+		this.id = id;
+		this.password = password;
+	}
 
 	public Member(String id, String password, String name) {
 		this.id = id;
@@ -42,7 +47,5 @@ public class Member {
 	public String toString() {
 		return "Member [id=" + id + ", password=" + password + ", name=" + name + "]";
 	}
-	
-	
-	
+
 }

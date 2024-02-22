@@ -17,4 +17,21 @@ public class MemberDAO {
 	public List<Member> showAllMember() {
 		return session.selectList("memberMapper.showAllMember");
 	}
+	
+	public int registerMember(Member vo) {
+		return session.insert("memberMapper.registerMember", vo);
+	}
+	
+	public Member signIn(Member vo) {
+		return session.selectOne("memberMapper.login", vo);
+	}
+	
+	public int update(Member vo) {
+		return session.update("memberMapper.updateMember", vo);
+	}
+
+	public List<Member> findMember(String keyword) {
+		return session.selectList("memberMapper.find", keyword);
+	}
+	
 }
