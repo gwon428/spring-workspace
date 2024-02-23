@@ -1,5 +1,6 @@
 package com.kh.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,7 +55,7 @@ public class MemberController {
 	@PostMapping("signIn")
 	public String signIn(HttpServletRequest request, Member vo) {
 		HttpSession session = request.getSession();
-		session.setAttribute("member", service.signIn(vo));
+		session.setAttribute("vo", service.signIn(vo));
 		return "login_result";
 	}
 	
@@ -97,6 +98,13 @@ public class MemberController {
 	public String find(Model model, String select, String keyword){
 		List<Member> list = service.findMember(keyword, select);
 		// 데이터 바인딩 (스프링이 제공하는 Model model)
+		model.addAttribute("list", list);
+		return "find_result";
+	}
+	
+	@GetMapping("find2")
+	public String find2(String[] checkId, Model model) {
+		List<Member> list = service.findMember2(checkId);
 		model.addAttribute("list", list);
 		return "find_result";
 	}

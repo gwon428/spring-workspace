@@ -18,7 +18,7 @@
 	Member member = (Member) session.getAttribute("member");
 	%>
 	<c:choose>
-			<c:when test="${empty member}">
+			<c:when test="${empty vo}">
 				<!-- 로그인 되어 있지 않을 때 -->
 				<li><a href="register">회원가입</a></li>
 				<li><a href="login">로그인</a></li>

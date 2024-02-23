@@ -35,4 +35,8 @@ public class MemberDAO {
 		return session.selectList("memberMapper.findMember", search);
 	}
 	
+	public List<Member> findMember2(List<String> idList){
+		return session.selectList("memberMapper.findMember2", idList);
+	}
+	
 }

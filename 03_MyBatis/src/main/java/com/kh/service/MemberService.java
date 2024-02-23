@@ -1,5 +1,6 @@
 package com.kh.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,11 @@ public class MemberService {
 		dto.setSelect(select);
 		return dao.findMember(dto);
 	}
-
+	
+	public List<Member> findMember2(String[] checkId){
+		// list로 받고있기 때문에 service에서 받는 배열을 넣을 수 없음 -> list로 변환
+		List<String> idList = Arrays.asList(checkId);
+		return dao.findMember2(idList);
+	}
+	
 }

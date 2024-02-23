@@ -1,7 +1,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="memberMapper">
-	<select id="showAllMember" resultType="Member">
+<!--  namespace : 해당 mapper 파일의 고유한 별칭 -->
+
+<!-- resultMap : 조회한 결과를 객체와 Row 간의 1:1 매칭이 아닌, 원하는 객체의 필드에 담아 반환하고자 할 때 사용 -->
+<!--  컬럼명이 변경되었을 때 resultMap을 사용해서 매칭 -->
+<!--
+	id는 primary key/ result는 일반 컬럼
+	property : 자바 필드 변수 이름
+	column : DB 해당 컬럼
+	
+	자바 필드의 Member와 DB의 member 테이블을 매핑시키는 역할 !
+ -->
+<resultMap type="Member" id="memberMap">
+	<id property="id" column="member_id"/>
+	<result property="password" column="member_pwd"/>
+	<result property="name" column="member_name"/>
+</resultMap>
+<!-- 
+	<select|insert|update|delete id="식별자" [parameterType="전달받은 자바타입|별칭"] [resultType="조회결과를반환하고자하는자바타입|별칭 | resultMap="조회결과를뽑아서매핑할resultMap의id"]>
+	</select|insert|update|delete>
+	
+ -->
+
+	<select id="showAllMember" resultMap="memberMap">
 		SELECT * FROM member
 	</select>
 
@@ -13,22 +35,62 @@
 
 	<!-- login : select, parameterType:Member, resultType="Member WHERE id=#{id} 
 		AND password=#{1234} -->
-	<select id="login" parameterType="Member" resultType="Member">
+	<select id="login" parameterType="Member" resultMap="memberMap">
 		SELECT *
-		FROM member WHERE id=#{id} AND password=#{password}
+		FROM member
+		WHERE member_id=#{id} AND member_pwd=#{password}
 	</select>
 
 	<!-- parameter 값 받은 것 명시 : #{id}, #{name} ... -->
 	<!-- updateMember : update, parameterType:Member -->
 	<update id="updateMember" parameterType="Member">
-		UPDATE member SET
-		password=#{password}, name=#{name} WHERE id=#{id}
+		UPDATE member
+		<trim prefix="SET" suffixOverrides=","> <!-- <trim> 대신 <set>을 사용한 것과 같다 -->
+		
+		<!-- 조건에 따른 update 쿼리 조건 걸기 -->
+			<if test="password != null">
+				member_pwd=#{password},
+			</if>
+			<if test="name != null">
+				member_name=#{name}
+			</if>
+		</trim>
+		WHERE member_id=#{id}
 	</update>
+	
+	<!-- 
+		* if
+		- 동적 쿼리를 구현할 때 기본적으로 사용되는 구문
+		- 특정 조건을 만족할 경우 안의 구문을 쿼리에 포함
+		
+		* choose
+		- JSTL의 choose 구문과 유사하여 주어진 구문 중 한 가지만을 수행
+		- 하위 요소인 when, otherwise 요소와 함께 사용
+		
+		* trim : 쿼리 구문의 특정 부분을 없앨 때 사용
+			- where 또는 set과 유사
+			- prefix로 처음 시작할 단어와 prefixOverrides로 시작 시 제거해야 할 단어 명시
+			- suffixOverrides로 끝날 시 제거해야 할 단어 명시
+			
+		* where
+			- 기존 쿼리의 where 절을 동적으로 구현할 때 사용
+			- 만약 태그 안의 내용이 AND'나 'OR'로 시작할 경우 'AND'나 'OR'을 제거
+			
+		* set
+			- 기존의 UPDATE SET 절을 동적으로 구현할 때 사용
+			- SET 키워드를 붙이고 불필요한 콤마(,)를 제거
+		 -->
 
-	<!-- findMember : select, parameterType : String, resultType:Member -->
-	<select id="findMember" parameterType="SearchDTO" resultType="Member">
+	<!-- findMember : select, parameterType : String, resultType: Member -->
+	<select id="findMember" parameterType="SearchDTO" resultMap="memberMap">
 		SELECT * FROM member
+		<!-- 
+		<trim prefix="WHERE" prefixOverrides="AND/OR">  -->
+		<!-- 조건이 없다면 <where></where> 절이 존재할 수 x
+			
+		 -->
 		<where>
+		<!-- if 구문 
 			<if test="select == 'all'">
 				name LIKE CONCAT('%', #{keyword},'%') OR id LIKE
 				CONCAT('%',#{keyword},'%')
@@ -39,6 +101,31 @@
 			<if test="select == 'name'">
 				name LIKE CONCAT('%', #{keyword},'%')
 			</if>
-		</where>
+		-->
+		<!-- choose 구문 -->
+			<choose>
+				<when test="select=='all'">
+				 	member_name LIKE CONCAT('%', #{keyword},'%') OR member_id LIKE
+					CONCAT('%',#{keyword},'%')
+				</when>
+				<when test="select == 'id'">
+					member_id LIKE CONCAT('%', #{keyword},'%')
+				</when>
+				<when test="select == 'id'">
+					member_name LIKE CONCAT('%', #{keyword},'%')
+				</when>
+			</choose>
+			</where>
+		<!-- </trim> -->
+	</select>
+
+	<!-- foreach 구문 : 동적 쿼리를 구현할 때 컬렉션에 대한 반복 처리 제공 -->
+	<!-- collection : list, Map, Set -->
+	<select id="findMember2" parameterType="ArrayList" resultMap="memberMap">
+		SELECT * FROM member
+		WHERE member_id IN
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
 	</select>
 </mapper>

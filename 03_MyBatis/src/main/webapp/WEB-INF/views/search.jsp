@@ -18,5 +18,15 @@
 		<input type="text" name="keyword">
 		<input type="submit" value="검색">
 	</form>
+	
+	<h2> foreach 동적쿼리 테스트</h2>
+	<form action="find2">
+		<input type="checkbox" name="checkId" value="user01"> user01
+		<input type="checkbox" name="checkId" value="user02"> user02
+		<input type="checkbox" name="checkId" value="user03"> user03
+		<input type="checkbox" name="checkId" value="user04"> user04
+		<input type="submit" value="검색">
+		<!-- SELECT * FROM member WHERE id IN('', '', ''); ==> 필터 검색!!!!-->
+	</form>
 </body>
 </html>
