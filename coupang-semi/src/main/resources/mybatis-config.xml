@@ -4,11 +4,11 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
+	<!--  VO, DTO 등록 하는 곳! -->
 	<typeAliases>
-		<typeAlias type="com.semi.model.vo.Customer" alias="Customer"/>
 	</typeAliases>
 	
+	<!-- mappers 파일들 등록하는 곳! -->
 	<mappers>
-		<mapper resource="mappers/customer-mapper.xml"/>
 	</mappers>
 </configuration>
