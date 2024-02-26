@@ -1,0 +1,16 @@
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	
+	<!-- mapper에서 별칭처럼 쓰기 위해 설정하는 곳 -->
+	<typeAliases>
+		<typeAlias type="com.kh.security.model.vo.Member" alias="Member"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mappers/member-mapper.xml"/>
+	</mappers>
+	
+</configuration>
