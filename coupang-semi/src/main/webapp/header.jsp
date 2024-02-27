@@ -22,7 +22,9 @@
 			<a href="#">즐겨찾기</a> <a href="#">입점신청</a>
 		</div>
 		<div class="tob-bar-right">
-			<a href="#">로그인</a> <a href="#">회원가입</a> <a href="#">고객센터</a>
+			<a href="#">로그인</a>
+			<a href="/register">회원가입</a>
+			<a href="#">고객센터</a>
 		</div>
 	</div>
 

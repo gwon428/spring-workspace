@@ -1,0 +1,31 @@
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+	<properties resource="driver.properties"/>
+		
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.kh.api.model.vo.Sample" alias="Sample"/>
+	</typeAliases>
+	
+	<environments default="develop">
+		<environment id="develop">
+			<transactionManager type="JDBC"/>
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="${db.driver}"/>
+				<property name="url" value="${db.url}"/>
+				<property name="username" value="${db.username}"/>
+				<property name="password" value="${db.password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	
+	<!-- mapper : 실행할 sql문들을 기록해둔 mapper 파일들을 등록하는 영역 -->
+	<mappers>
+		<mapper resource="mappers/sample-mapper.xml"/>
+	</mappers>
+</configuration>
