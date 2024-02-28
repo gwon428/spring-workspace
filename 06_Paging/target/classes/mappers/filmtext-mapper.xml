@@ -1,0 +1,19 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="filmMapper">
+	<resultMap type="FilmText" id="filmMap">
+		<id property="id" column="film_id" />
+		<result property="title" column="title" />
+		<result property="desc" column="description" />
+	</resultMap>
+	
+	<select id="showAllText" parameterType="Paging" resultMap="filmMap">
+		SELECT * FROM film_text
+		LIMIT #{offset}, #{limit}
+	</select>
+
+	<select id="count" resultType="int">
+	SELECT count(*) FROM film_text;
+	</select>
+	
+</mapper>
