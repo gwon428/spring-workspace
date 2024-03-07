@@ -6,9 +6,11 @@
 	
 	<!--  VO, DTO 등록 하는 곳! -->
 	<typeAliases>
+		<typeAlias type="com.semi.coupang.model.vo.Category" alias="Category"/>
 	</typeAliases>
 	
 	<!-- mappers 파일들 등록하는 곳! -->
 	<mappers>
+		<mapper resource="mappers/category-mapper.xml"/>	
 	</mappers>
 </configuration>

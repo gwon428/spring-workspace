@@ -31,7 +31,7 @@ public class Paging {
 		this.endPage = (int) (Math.ceil((double)page / this.pageSize) * this.pageSize);
 		this.startPage = endPage - pageSize + 1;
 		
-		int lastPage = (int)(Math.ceil((double)total)/this.limit);
+		int lastPage = (int)(Math.ceil((double)total/this.limit));
 		
 		if(lastPage < this.endPage) {
 			this.endPage = lastPage;

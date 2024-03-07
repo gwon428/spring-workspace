@@ -1,0 +1,28 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="category">
+	
+	<resultMap type="Category" id="categoryMap">
+		<id property="cateCode" column="cate_code"/>
+		<result property="cateIcon" column="cate_icon"/>
+		<result property="cateName" column="cate_name"/>
+		<result property="careUrl" column="cate_url"/>
+		
+		<collection property="subList" ofType="Category">
+			<id property = "subCode" column="sub_code"/>
+			<result property="subName" column="sub_name"/>
+		</collection>
+	</resultMap>
+	
+	<!-- 계층적 쿼리.. -->
+	<select id="select" resultMap = "categoryMap">
+		SELECT
+			p.cate_code as cate_code,
+			p.cate_icon as cate_icon,
+			p.cate_name as cate_name,
+			p.cate_url as cate_url,
+			c.cate_code as sub_code,
+			c.cate_name as sub_name
+		FROM category c
+		JOIN category p ON(c.parent_code = p.cate_code)
+	</select>
+</mapper>

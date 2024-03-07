@@ -14,6 +14,30 @@
 	<select id="view" parameterType="Board" resultType="Board">
 		SELECT * FROM board
 		WHERE no=#{no}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</select>
 	
 	<update id="updateBoard" parameterType="Board">

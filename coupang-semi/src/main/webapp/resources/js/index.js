@@ -48,3 +48,47 @@ window.addEventListener("scroll", function () {
     categoryMenu.style.display = "none";
   }
 });
+
+/*
+<div class="category-item">
+<i class="fa-solid fa-shirt"></i>
+<span>패션의류/잡화</span>
+<i class="fa-solid fa-caret-right"></i>
+<div class="category-sub-item">
+	<ul>
+		<li><a href="#">여성패션</a></li>
+	</ul>
+	<img src="https://image8.coupangcdn.com/image/displayitem/displayitem_3cc22bda-73a2-4f9b-a7ea-c12d205adcb3.jpg" alt="" />
+</div>
+</div>
+*/
+
+//ajax로 카테고리 호출!
+$.ajax({
+  type: "get",
+  url: "/category",
+  
+  success: function(list){
+    let htmlCode = "";
+
+    for(const item of list){
+      htmlCode += `
+      <div dlass="category-item">
+      <i class="fa-solid ${item.cateIcon}"></i>
+      <span>${item.cateName}</span>
+      <i class="fa-solid fa-caret-right"></i>
+      <div class="category-sub-item">
+        <ul>
+      `;
+      for(const sub of item.subList){
+      htmlCode += `<li><a href="#">${sub.subName}</a></li>`;
+      }
+
+      htmlCode += `
+          <img src="${item.cateUrl}" alt="" />
+        </div>
+      </div>`;
+    }
+    $(".category-list").append(htmlCode);
+  },
+});
