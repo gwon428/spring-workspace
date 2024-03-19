@@ -10,11 +10,12 @@ import com.semi.coupang.model.vo.Category;
 
 @Repository
 public class CategoryDAO {
-
+	
 	@Autowired
 	private SqlSessionTemplate session;
 	
-	public List<Category> viewCategoryList(){
+	public List<Category> viewCategoryList() {
 		return session.selectList("category.select");
 	}
+
 }

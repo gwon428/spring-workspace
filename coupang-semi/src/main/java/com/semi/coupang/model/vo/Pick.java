@@ -1,13 +1,11 @@
 package com.semi.coupang.model.vo;
 
-import lombok.NoArgsConstructor;
-
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor
 public class Pick {
-	private String pickCode;
+	private int pickCode;
 	private String id;
-	private String prodCode;
-	private String pickDate;
+	private int prodCode;
 }

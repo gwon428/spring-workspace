@@ -1,0 +1,25 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pick">
+
+	<resultMap type="Pick" id="pickMap">
+		<id property="pickCode" column="pick_code"/>
+		<result property="id" column="id"/>
+		<result property="prodCode" column="prod_code"/>
+	</resultMap>
+
+	<select id="select" parameterType="Pick" resultMap="pickMap">
+		SELECT *
+		FROM pick
+		WHERE id=#{id} AND prod_code=#{prodCode}
+	</select>
+
+	<insert id="insert" parameterType="Pick">
+		INSERT INTO pick(id, prod_code)
+		VALUES(#{id}, #{prodCode})
+	</insert>	
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM pick
+		WHERE prod_code=#{prodCode} 
+	</delete>
+</mapper>

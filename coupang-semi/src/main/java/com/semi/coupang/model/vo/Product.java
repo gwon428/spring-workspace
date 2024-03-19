@@ -5,13 +5,10 @@ import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor
 public class Product {
-	private String prodCode;
-	private String enteId;
-	private String cateCode;
+
+	private int prodCode;
 	private String prodName;
-	private String prodDesc;
-	private String price;
-	private String stock;
-	private String prodDate;
+	private int price;
+	private String prodPhoto;
 	
 }
