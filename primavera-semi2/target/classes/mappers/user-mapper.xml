@@ -1,0 +1,107 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userMapper">
+	<resultMap type="User" id="userMap">
+		<result property="id" column="id"/>
+		<result property="password" column="password"/>
+		<result property="name" column="name"/>
+		<result property="phone" column="phone"/>
+		<result property="postCode" column="post_code"/>
+		<result property="roadAddress" column="road_address"/>
+		<result property="detailAddress" column="detail_address"/>
+		<result property="email" column="email"/>
+		<result property="bankName" column="bank_name"/>
+		<result property="account" column="account"/>
+		<result property="auth" column="auth"/>
+		<result property="kakao" column="kakao"/>
+	</resultMap>
+	
+	<select id="idCheck" parameterType="String" resultMap="userMap">
+		SELECT *
+		FROM user
+		WHERE id=#{id}
+	</select>
+
+	<select id="phoneCheck" parameterType="String" resultMap="userMap">
+		SELECT *
+		FROM user
+		WHERE phone=#{phone}
+	</select>
+	
+	<select id="emailCheck" parameterType="String" resultMap="userMap">
+		SELECT *
+		FROM user
+		WHERE email=#{email}
+	</select>
+	
+	<select id="userCheck" parameterType="User" resultMap="userMap">
+		SELECT *
+		FROM user
+		WHERE id=#{id}
+		AND email=#{email}
+	</select>
+	
+	<insert id="registerUser" parameterType="User">
+		INSERT INTO user(id, password, name, phone, post_code, road_address, detail_address, email, bank_name, account)
+		VALUES(#{id}, #{password}, #{name}, #{phone}, #{postCode}, #{roadAddress}, #{detailAddress}, #{email}, #{bankName}, #{account})
+	</insert>
+	
+	<select id="findkakao" parameterType="java.util.HashMap" resultType = "User">
+		SELECT * FROM user
+		WHERE name = #{name}
+		AND id=#{id}
+	</select>
+	
+	<insert id="kakaoInsert" parameterType="java.util.HashMap">
+		INSERT INTO user(id, name, kakao)
+		VALUES(#{id}, #{name}, 'Y')
+	</insert>
+	
+	<select id="getMemberById" parameterType="String" resultMap="userMap">
+		SELECT * FROM user
+		WHERE id=#{id}
+	</select>
+	
+	<update id="updateUser" parameterType="User">
+		UPDATE user
+				password=#{password},
+				name=#{name},
+				phone=#{phone},
+				email=#{email}
+			WHERE id=#{id}
+	</update>
+	
+	<update id="updatePwd" parameterType="User">
+		UPDATE user
+		SET password=#{password}
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="deleteUser" parameterType="User">
+		DELETE FROM user
+		WHERE id=#{id}
+	</delete>
+	
+	<select id="showAllUser" parameterType="User" resultMap="userMap">
+	SELECT * FROM user
+	WHERE enabled=1
+	LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="count" resultType="int">
+	SELECT count(*) FROM user
+	WHERE enabled=1
+	</select>
+	
+	<select id="findId" parameterType="User" resultMap="userMap">
+	SELECT id
+	FROM user
+	WHERE name=#{name} AND email=#{email}
+	</select>
+	
+	<select id="checkEmail" parameterType="User" resultMap="userMap">
+	SELECT * FROM user
+	WHERE id=#{id} AND email=#{email}
+	</select>
+	
+</mapper>

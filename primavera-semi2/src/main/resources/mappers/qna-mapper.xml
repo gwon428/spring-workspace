@@ -1,0 +1,117 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qnaMapper">
+
+	<resultMap type="Qna" id="qnaMap">
+		<id property="qnaNum" column="qna_num"/>
+		<result property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="writeDate" column="write_date"/>
+		<result property="url" column="url"/>
+		<result property="status" column="status"/>
+		<result property="secret" column="secret"/>
+	</resultMap>
+	
+	<!-- insert -->
+	<insert id="insertQna" parameterType="Qna" useGeneratedKeys="true" keyProperty="qnaNum" keyColumn="qna_num">
+		INSERT INTO qna(id, title, content, url, secret) 
+		VALUES(#{id}, #{title}, #{content}, #{url}, #{secret})
+	</insert>
+	
+	<!-- selectAll -->
+	<select id="showAllQna" parameterType="Paging" resultMap="qnaMap">
+		SELECT qna_num, title, id, write_date, status, secret
+		FROM qna
+		
+		<where>
+			<choose>
+				<when test="select == 'allFind'">
+					title LIKE CONCAT('%',#{keyword},'%') 
+				OR id LIKE CONCAT('%',#{keyword},'%')
+				</when>
+				<when test="select == 'titleFind'">
+					title LIKE CONCAT('%',#{keyword},'%')
+				</when>
+				<when test="select == 'idFind'">
+					id LIKE CONCAT('%',#{keyword},'%')
+				</when>
+			</choose>
+		</where>
+		
+		ORDER BY qna_num DESC
+		LIMIT #{offset}, #{limit}
+	</select>
+	
+	<!-- selectCount -->
+	<select id="countQna" parameterType="Paging" resultType="int">
+		SELECT count(*) FROM qna
+		<where>
+			<choose>
+				<when test="select == 'allFind'">
+					title LIKE CONCAT('%',#{keyword},'%') 
+				OR id LIKE CONCAT('%',#{keyword},'%')
+				</when>
+				<when test="select == 'titleFind'">
+					title LIKE CONCAT('%',#{keyword},'%')
+				</when>
+				<when test="select == 'idFind'">
+					id LIKE CONCAT('%',#{keyword},'%')
+				</when>
+			</choose>
+		</where>
+	</select>
+	
+	<!--  select : 한 개의 게시물 누르면 정보 보기 -->
+	<select id="select" resultMap="qnaMap">
+		SELECT * FROM qna
+		WHERE qna_num=#{qnaNum}
+	</select>
+	
+	<!-- update -->
+	<update id="update" parameterType="Qna">
+		UPDATE qna
+		SET 
+		title=#{title},
+		content=#{content},
+		url=#{url}
+		WHERE qna_num=${qnaNum}
+	</update>
+		
+	<!-- delete -->
+	<delete id="delete" parameterType="int">
+	DELETE FROM qna
+	WHERE qna_num=#{qnaNum}
+	</delete>
+	
+	<!-- 회원용 마이페이지 - 내가 적은 qna 보기 -->
+	<select id="showQna" parameterType="Pagingseven"
+		resultMap="qnaMap">
+		SELECT *
+		FROM qna
+		WHERE
+		id=#{id}
+		ORDER BY 1 DESC
+		LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="countmyQna" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM qna
+		WHERE id=#{id}
+	</select>
+	
+	<!-- 관리자용 Q&A 게시판 관리 페이지 : qna의 status가 'N'인 경우 리스트 -->
+	<select id="listStatus" parameterType="PagingQna" resultMap="qnaMap">
+		SELECT	id, title, write_date, status, qna_num
+ 		FROM qna
+ 		WHERE status='N'
+ 		LIMIT #{offset}, #{limit} 
+	</select>
+	
+	<!-- selectCount -->
+	<select id="countStatus" resultType="int">
+		SELECT count(*) FROM qna
+		WHERE status='N'
+	</select>
+	
+	
+</mapper>

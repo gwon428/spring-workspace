@@ -1,0 +1,87 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="collectMapper">
+
+	<resultMap type="Collect" id="collectMap">
+		<id property="orderNum" column="order_num"/>
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="phone" column="phone"/>
+		<result property="postCode" column="post_code"/>
+		<result property="roadAddress" column="road_address"/>
+		<result property="detailAddress" column="detail_address"/>
+		<result property="collectionDate" column="collection_date"/>
+		<result property="doorPwd" column="door_pwd"/>
+		<result property="request" column="request"/>
+		<result property="prog" column="prog"/>
+		<result property="kg" column="kg"/>
+	</resultMap>
+
+	<!-- insert : 수거 신청 -->
+	<insert id="registerCollect" parameterType="Collect" useGeneratedKeys="true" keyProperty="orderNum" keyColumn="order_num">
+		INSERT INTO collect(id, name, phone, post_code, road_address, detail_address, collection_date, door_pwd, request, kg) 
+		VALUES(#{id}, #{name}, #{phone}, #{postCode}, 
+		#{roadAddress}, #{detailAddress}, #{collectionDate}, #{doorPwd}, #{request}, #{kg})
+	</insert>
+	
+	<!-- select : 관리자용 수거신청현황용(prog제외) -->
+	<select id="showAllCollect" resultMap="collectMap">
+		SELECT order_num, id, name, phone, post_code, road_address, 
+		detail_address, collection_date, door_pwd, request, kg 
+		FROM collect
+		LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="showAllCollectorderby" resultMap="collectMap">
+		SELECT order_num, id, name, phone, post_code, road_address, 
+		detail_address, collection_date, door_pwd, request, kg 
+		FROM collect
+		<if test="sorts != 0">
+			ORDER BY #{sorts}
+		</if>
+		LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="countAllCollect" resultType="int">
+		SELECT count(*) FROM collect
+	</select>
+	
+	<!-- select : 회원용 진행상황 페이지용 : 로그인 된 회원의 아이디를 조건으로-->
+	<select id="showCollect" parameterType="Pagingseven" resultMap="collectMap">
+		SELECT order_num, id, name, phone, collection_date, prog, kg
+		FROM collect
+		WHERE id=#{id}
+		ORDER BY 1 DESC
+		LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="Collect" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM collect
+		WHERE id=#{id}
+	</select>
+	
+	<!-- select : 관리자용 progress 관리 페이지용 : 기존 정보 보이기 -->
+	<select id="showProgress" resultMap="collectMap">
+		SELECT order_num, id, name, phone, prog, kg
+		FROM collect
+		LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="countProgress" resultType="int">
+		SELECT COUNT(*) FROM collect
+	</select>
+	
+	<!-- update : 관리자용 progress 관리 페이지용 : prog 바꾸기 -->
+	<update id="updateProgress" parameterType="Collect">
+		UPDATE collect
+		SET prog=#{prog}
+		WHERE order_num=#{orderNum}
+	</update>
+	
+	<select id="count" resultType="int">
+	SELECT count(*) FROM user;
+	</select>
+	
+	
+	
+</mapper>

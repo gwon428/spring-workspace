@@ -1,0 +1,313 @@
+@font-face {
+	font-family: "Cafe24Oneprettynight";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff")
+		format("woff");
+	font-style: normal;
+}
+
+
+.word .h1 {
+	position: absolute;
+	top: 460px;
+	left: 35px;
+	font-size: 5rem;
+	font-family: "Cafe24Oneprettynight";
+	color: white;
+	margin-left: 40px;
+	animation: slide 1.8s;
+}
+
+@keyframes slide {from { left:-300px;
+	
+}
+
+to {
+	left: 35px;
+}
+
+}
+header a {
+	color: white;
+	font-family: "Cafe24Oneprettynight";
+}
+
+header nav:nth-child(1) {
+	margin-left: 50px;
+	font-size: 2.5rem;
+	font-weight: lighter;
+}
+
+header nav:nth-child(2) {
+	padding: 30px;
+}
+
+header nav:nth-child(2) a {
+	padding: 20px;
+	font-size: 1.5rem;
+}
+
+nav>a[href="/notice/list"]:hover+span, nav>span:hover {
+	display: block;
+}
+
+.container {
+	padding-top: 20vh;
+}
+
+body, #neck, .cover, .map {
+	width: 100%;
+}
+
+.main {
+	background-color: rgb(229, 227, 219);
+	height: 100vh;
+}
+
+#neck {
+	background-image: url(../../../resources/images/storebackground.jpg);
+	background-size: cover;
+	background-position: center;
+	height: 85vh;
+	margin-bottom: 50px;
+}
+
+.cover {
+	height: 100%;
+	background-color: rgba(50, 36, 30, 0.6);
+}
+
+.slider1 {
+	display: flex;
+	align-items: center;
+	margin-bottom: 50px;
+}
+
+.slides1 .slide1 {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.slides1 img {
+   width: 300px;
+	height: 300px;
+	object-fit: cover;
+	border-radius: 15px;
+	box-shadow: 0 0 10px #999;
+}
+
+.text {
+    max-width: 400px;
+	margin-left: 50px;
+}
+
+.slider2 {
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.slides2 .slide2 {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.slides2 img {
+   width: 300px;
+	height: 300px;
+	object-fit: cover;
+	border-radius: 15px;
+	box-shadow: 0 0 10px #999;
+}
+
+.text {
+    max-width: 400px;
+	margin-left: 50px;
+}
+
+.slider3 {
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.slides3 .slide3 {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.slides3 img {
+   width: 300px;
+	height: 300px;
+	object-fit: cover;
+	border-radius: 15px;
+	box-shadow: 0 0 10px #999;
+}
+
+.text {
+    max-width: 400px;
+	margin-left: 50px;
+}
+/* 
+이미지 슬라이드 부분
+@
+keyframes slideIn {from { transform:translateX(-100%);
+	opacity: 0;
+}
+
+to {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+}
+.image-text-wrapper {
+	opacity: 0;
+	transform: translateX(-100%);
+}
+
+.image-text-wrapper.animate {
+	animation: slideIn 2s ease-out forwards;
+}
+  */
+#map {
+	margin: 50px auto;
+	width: 800px;
+	height: 600px;
+	border-radius: 15px;
+	padding: 15px;
+	box-shadow: 0 0 10px #999;
+}
+
+/* 맵 슬라이드 부분 */
+@keyframes slideUp {from { transform:translateY(100%);
+	opacity: 0;
+}
+
+to {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+}
+#map.animate {
+	animation: slideUp 2s ease-out forwards;
+}
+
+.wrap {
+	position: absolute;
+	left: 0;
+	bottom: 40px;
+	width: 288px;
+	height: 132px;
+	margin-left: -144px;
+	text-align: left;
+	overflow: hidden;
+	font-size: 12px;
+	font-family: "Cafe24Oneprettynight";
+	line-height: 1.5;
+}
+
+.wrap * {
+	padding: 0;
+	margin: 0;
+}
+
+.wrap .info {
+	width: 286px;
+	height: 120px;
+	border-radius: 5px;
+	border-bottom: 2px solid #ccc;
+	border-right: 1px solid #ccc;
+	overflow: hidden;
+	background: #fff;
+}
+
+.wrap .info:nth-child(1) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.info .title {
+	padding: 5px 0 0 10px;
+	height: 30px;
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.info .close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #888;
+	width: 17px;
+	height: 17px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+}
+
+.info .close:hover {
+	cursor: pointer;
+}
+
+.info .body {
+	position: relative;
+	overflow: hidden;
+}
+
+.info .desc {
+	position: relative;
+	margin: 13px 0 0 90px;
+	height: 75px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.desc .ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.desc .ellipsis1 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;	
+	text-decoration : underline;
+}
+
+.info .img {
+	position: absolute;
+	top: 6px;
+	left: 5px;
+	width: 73px;
+	height: 71px;
+	border: 1px solid #ddd;
+	color: #888;
+	overflow: hidden;
+}
+
+.info:after {
+	content: '';
+	position: absolute;
+	margin-left: -12px;
+	left: 50%;
+	bottom: 0;
+	width: 22px;
+	height: 12px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+
+.info .link {
+	color: #5085BB;
+}

@@ -1,0 +1,147 @@
+@font-face {
+  font-family: "Cafe24Oneprettynight";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff")
+    format("woff");
+  font-style: normal;
+}
+body{
+	position:absolute;
+	width:100%;
+	height:100vh;
+}
+
+#main{
+	margin-top : 70px;
+	height:90%;	
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	flex-direction : column;
+}
+h1{
+	margin-bottom: 15px;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "Cafe24Oneprettynight";
+}
+
+.container{
+	border-top: 1px solid #757575;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width : 700px;
+	height : 400px;
+}
+form{
+	width:700px;
+	height:400px;
+	display:grid;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+#id_orderNum{
+	display: flex;
+    flex-wrap: wrap;
+}
+#id, #secret, #title, #content, #img{
+	font-family: "Cafe24Oneprettynight";
+	font-weight:bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+#id{
+	margin-top : 20px;
+}
+#secret{
+	margin-top : 20px;
+}
+#secret #secretCheck{
+	width:43px;
+	margin-left: 5px;
+}
+#secret #secretPwd{
+	width:63px;
+}
+label{
+	margin-left : 25px;
+	 width: 53px;
+}
+#id_input, #orderNum_input{
+	margin-left : 20px;
+	width:200px;
+	height:30px;
+	margin-right:50px;
+	border-radius:3px;
+	border-color : #d1d1d1;
+}
+#title_input {
+    width: 560px;
+    height: 30px;
+    margin-left: 20px;
+    margin-right: 70px;
+    border-radius: 3px;
+    border-color: #d1d1d1;
+}
+
+#content_input {
+    margin-left: 20px;
+    width: 560px;
+    height: 100px;
+    margin-right: 70px;
+    border-radius: 3px;
+    border-color: #d1d1d1;
+}
+
+#img_input {
+    width: 90px;
+    height: 90px;
+    border-radius: 8px;
+    border: 0.5px solid #d1d1d1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 96px;
+    margin-top: 3px;
+}
+#photo{
+	margin-left: 20px;
+	cursor: pointer;
+}
+img{
+	width:92px;
+	height:92px;
+}
+.btn{
+	display:flex;
+	justify-content: center;
+    align-items: center;
+}
+.btn_final{
+	margin:0px 15px;
+}
+#btn_insert{
+	background-color : #93B19A;
+	border : none;
+	width:60px;
+	height:30px;
+	cursor:pointer;
+	font-family: "Cafe24Oneprettynight";
+	font-weight : bolder;
+	border-radius:3px;
+}
+#btn_list{
+	background-color : #353535;
+	cursor:pointer;
+	border : none;
+	width:60px;
+	height:30px;
+	border-radius:3px;
+}
+#btn_list a{
+	color : white;
+	font-family: "Cafe24Oneprettynight";
+	font-weight : bolder;
+	
+	

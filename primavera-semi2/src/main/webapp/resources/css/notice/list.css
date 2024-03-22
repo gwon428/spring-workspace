@@ -1,0 +1,216 @@
+* {
+	margin: 0%;
+	padding: 0%;
+	font-family: "Cafe24Oneprettynight";
+}
+
+@font-face {
+	font-family: "Cafe24Oneprettynight";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff")
+		format("woff");
+	font-style: normal;
+}
+
+/*----------------------------------------------------------------------------*/
+.header h1 {
+	position: relative;
+	width: 386px;
+	font-size: 2rem;
+	bottom: 2px;
+	border-bottom: solid 2px;
+	left: 739px;
+	top: 100px;
+}
+
+header a {
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
+}
+
+/* ---------------------------------------------------- */
+.header-blackbox {
+	position: absolute;
+	width: 100%;
+	height: 85vh;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+img {
+	position: absolute;
+	height: 85vh;
+	z-index: -1;
+	width: 100%;
+	object-fit: cover;
+}
+
+.section1 .h1 {
+	position: absolute;
+	top: 352px;
+	left: 46px;
+	font-size: 5rem;
+	color: white;
+}
+
+.section1 .h2 {
+	position: absolute;
+	top: 460px;
+	left: 35px;
+	font-size: 5rem;
+	color: white;
+	animation: slide1 1.8s;
+	margin-left: 40px;
+}
+
+@keyframes slide1 {from { left:-300px;
+	
+}
+
+to {
+	left: 35px;
+}
+
+}
+
+/* ---------------------------------------------------- */
+.section2 {
+	width: 100%;
+	position: absolute;
+	top: 810px;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.container {
+	top: 60px;
+}
+
+.container a {
+	position: relative;
+	top: 504px;
+	display: flex;
+	font-size: 2rem;
+	border: solid 2px;
+	border-radius: 10px;
+	width: 143px;
+	left: 1121px;
+	padding: 5px;
+}
+
+.table {
+	border-collapse: collapse;
+	font-size: 1.5rem;
+	width: 1200px;
+	left: 64px;
+	position: relative;
+	bottom: 17px;
+	height: 558px;
+}
+
+thead {
+	border-top: 3px solid black;
+	border-bottom: 2px solid black;
+	position: relative;
+	font-weight: lighter;
+	font-size: 1.2rem;
+	height: 47px;
+}
+
+.table td {
+	border-bottom: 2px solid #dddddd;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* ------------------------------------------------------------------- */
+.container h1 {
+	position: relative;
+	text-decoration: underline;
+	right: 663px;
+	top: 31px;
+	padding: 1px;
+	font-size: 3rem;
+	font-weight: bolder;
+	font-family: "Cafe24Oneprettynight";
+}
+
+#admit {
+	position: relative;
+	left: 1186px;
+	top: 617px;
+	margin: 20px 0;
+	padding: 7px;
+	font-size: 1rem;
+	background-color: #93b19a;
+	color: white;
+	border: none;
+	font-family: "Cafe24Oneprettynight";
+	border-radius: 6px;
+	width: 83px;
+}
+
+table {
+	margin: 12px 0;
+	position: relative;
+	border-top: 1px solid #757575;
+	border-bottom: 1px solid #757575;
+	min-height: 440px;
+	width: 950px;
+}
+
+tr {
+	position: relative;
+	display: grid;
+	grid-template-columns: 0.5fr 3fr 1fr 1fr 0fr;
+	height: 51px;
+	border-bottom: 1px solid #eaeaea;
+	font-size: 1.2rem;
+}
+
+th {
+	position: relative;
+    font-family: "Cafe24Oneprettynight";
+    margin: 10px 0;
+    margin-top: 13px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+td {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Cafe24Oneprettynight";
+	font-weight: bolder;
+}
+
+.pagination {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	right: 356px;
+}
+
+.page-link {
+	margin: 0 10px;
+	font-family: "Cafe24Oneprettynight";
+	font-weight: bolder;
+	font-size: 25px;
+}
+
+#page_num {
+	display: inline-block;
+	text-align: center;
+	font-size: 16px;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+}

@@ -1,0 +1,155 @@
+* {
+	margin: 0%;
+	padding: 0%;
+	font-family: "Cafe24Oneprettynight";
+}
+
+@font-face {
+	font-family: "Cafe24Oneprettynight";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff")
+		format("woff");
+	font-style: normal;
+}
+
+body {
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+}
+
+#main {
+	margin-top: 70px;
+	height: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+h1 {
+	margin-bottom: 15px;
+	font-size: 2rem;
+	font-weight: bold;
+	font-family: "Cafe24Oneprettynight";
+}
+
+.container {
+	border-top: 1px solid #757575;
+	width: 629px;
+	position: relative;
+	left: 644px;
+	top: 223px;
+}
+
+form {
+	width: 616px;
+	height: 439px;
+	display: grid;
+	grid-template-rows: 2fr 1fr 0fr 1fr;
+}
+
+#title, #context, #file{
+	font-family: "Cafe24Oneprettynight";
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+#id {
+	margin-top: 20px;
+}
+
+label {
+	margin-left: 32px;
+}
+
+div #context label {
+	position: relative;
+	right: 19px;
+}
+
+#title_input {
+	width: 560px;
+	height: 30px;
+	margin-left: 14px;
+	margin-right: 70px;
+	border-radius: 3px;
+	border-color: #d1d1d1;
+	font-size: 1rem;
+    font-weight: bold;
+}
+
+#content_input {
+	margin-left: -7px;
+	width: 560px;
+	height: 129px;
+	margin-right: -31px;
+	border-radius: 8px;
+	border-color: #d1d1d1;
+	font-size: 1rem;
+    font-weight: bold;
+}
+
+#file_input {
+	width: 90px;
+	height: 90px;
+	border-radius: 8px;
+	border: 0.5px solid #d1d1d1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-left: 70px;
+}
+
+#file {
+	margin-left: 73px;
+	cursor: pointer;
+	position: relative;
+	top: 8px;
+	left: 110px;
+}
+
+#title label {
+	position: relative;
+	right: 16px;
+}
+
+#file label {
+	position: relative;
+	right: 202px;
+}
+
+img {
+	width: 92px;
+	height: 92px;
+}
+
+.btn,
+div a{
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 0.5px solid #d1d1d1;
+    background-color: #93b19a;
+    color: white;
+    font-family: "Cafe24Oneprettynight";
+    border-radius: 6px;
+    width: 75px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 468px;
+    position: relative;
+}
+
+
+.back{
+    left: 550px;
+    position: relative;
+    bottom: 65px;
+}
+
+/* ------------------------------------회원 일경우-----------------------------------------  */

@@ -1,0 +1,119 @@
+@font-face {
+  font-family: "Cafe24Oneprettynight";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff")
+    format("woff");
+  font-style: normal;
+}
+/*----------------------------------- qna 내용단 -----------------------------------------*/
+body{
+	position:absolute;
+	width:100%;
+	height:100vh;
+}
+#main{
+	margin-top : 160px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	flex-direction : column;
+}
+#main #top_title{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	flex-direction : column;
+	margin-bottom : 20px;
+}
+#top_title #qna{
+	border-radius: 10px;
+    background-color: #93B19A;
+    color: white;
+    width: 70px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+    font-family: "Cafe24Oneprettynight";
+    margin-bottom : 20px;
+}
+#top_title #title{
+	font-family: "Cafe24Oneprettynight";
+	font-size : 1.5rem;
+	font-weight : bolder;
+	margin-bottom : 20px;
+}
+
+#main #text_button{
+	width: 800px;
+    display: flex;
+    justify-content: space-between;
+	font-family: "Cafe24Oneprettynight";
+	font-weight : bold;
+	margin-bottom : 20px;
+	
+}
+#text_button #id_writeDate{
+	display : flex;
+}
+#writeDate{
+	margin-left : 20px;
+}
+/* --------------------- 버튼 ---------------------------*/
+#btnlist{
+	background-color : black;
+	border-radius : 3px;
+	width : 45px;
+	height: 27px;
+	border : none;
+}
+#btnupdate, #btndelete{
+	background-color : #CBD9CE;
+	border-radius : 3px;
+	width : 45px;
+	height: 27px;
+	border : none;
+}
+#listQna, #updateQna, #deleteQna{
+	font-family: "Cafe24Oneprettynight";	
+	font-weight:bold;
+	width : 45px;
+	height: 27px;
+}
+#btnlist a{
+	color : white;	
+}
+#btnAnswer{
+	background-color : #5c8063;
+	border-radius : 3px;
+	width : 45px;
+	height: 27px;
+	border : none;
+}
+#btnAnswer a{
+	color : white;
+	font-family: "Cafe24Oneprettynight";
+	font-weight:bold;	
+}
+/* ---------------- 내용 ------------------------*/
+#qnaContent{
+	padding-top: 30px;
+    min-height: 320px;
+    max-height: 790px;
+    padding-bottom: 30px;
+    border-bottom: 2px dashed #4b6850;
+    border-top: 2px solid #4b6850;
+    overflow: auto;
+    width:830px;
+}
+#qnaUrl{
+	border-bottom: 2px solid #4b6850;
+	width:830px;
+	height : 170px;
+}
+#qnaUrl img{
+	width : 130px;
+	height:130px;
+	margin:15px;
+}

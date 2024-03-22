@@ -1,0 +1,727 @@
+* {
+	margin: 0%;
+	padding: 0%;
+	font-family: "Cafe24Oneprettynight";
+}
+
+@font-face {
+	font-family: "Cafe24Oneprettynight";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff")
+		format("woff");
+	font-style: normal;
+}
+
+a {
+	pointer-events: auto;
+}
+
+section {
+	height: 100vh;
+}
+
+header {
+	position: fixed;
+	width: 100%;
+	height: 70px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 100;
+}
+
+header a {
+	color: white;
+	font-family: "Cafe24Oneprettynight";
+	height: 64px;
+}
+
+header nav:nth-child(1) {
+	margin-left: 50px;
+	font-size: 2.5rem;
+	font-weight: lighter;
+}
+
+header nav:nth-child(2) {
+	padding: 30px;
+}
+
+header nav:nth-child(2) a {
+	padding: 20px;
+	font-size: 1.5rem;
+}
+/*
+nav>a[href="/notice/list"]:hover+span, nav>span:hover{
+	display: block;
+}
+
+*/
+nav>span {
+	display: none;
+    position: absolute;
+    right: 81px;
+    top: 70px;
+    padding: 11px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+nav>span a {
+	display: block;
+	text-decoration: none;
+}
+
+nav span a::after {
+	background-color: white;
+}
+
+nav>span a:hover {
+	color: white;
+}
+
+nav a, a h1 {
+	text-decoration: none;
+	position: relative;
+}
+
+a::after, a h1::after {
+	content: "";
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	width: 0%;
+	height: 2px;
+	background-color: white;
+	transition: width 0.5s ease;
+}
+
+nav a:hover::after, a h1:hover::after {
+	width: 100%;
+}
+
+.directivity a h1:hover {
+	opacity: 0.5;
+}
+
+/* -----------------------------------Main Section 1-------------------------------------- */
+.header-blackbox {
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+#section1 video {
+	position: absolute;
+	height: 100vh;
+	z-index: -1;
+	width: 100%;
+	object-fit: cover;
+}
+
+.directivity .h1 {
+	position: absolute;
+	top: 600px;
+	left: 50px;
+	font-size: 5rem;
+	color: white;
+	animation: slide1 1.8s;
+}
+
+@keyframes slide1 {from { left:-600px;
+	
+}
+
+to {
+	left: 50px;
+}
+
+}
+@
+keyframes out1 {from { left:-600px;
+	
+}
+
+to {
+	left: 50p;
+}
+
+}
+.directivity .h2 {
+	position: absolute;
+	top: 700px;
+	left: 400px;
+	font-size: 5rem;
+	color: white;
+	animation: slide2 1.9s;
+}
+
+@keyframes slide2 {from { left:50px;
+	
+}
+
+to {
+	left: 400px;
+}
+
+}
+@keyframes out2 {from { left:50px;
+	
+}
+
+to {
+	left: 400px;
+}
+
+}
+.directivity a h1 {
+	position: absolute;
+	top: 828px;
+	left: 106px;
+	color: white;
+	font-size: 2.5rem;
+}
+
+#section1 nav {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: last baseline;
+	flex-direction: column;
+	font-size: 2rem;
+	padding: 20px;
+	animation: slide3 2s;
+	z-index: 999;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+#section1 nav a {
+	padding: 10px;
+	color: white;
+}
+
+#section1 nav i:hover {
+	color: #699372;
+}
+
+@keyframes slide3 {from { right:-60px;
+	
+}
+
+to {
+	right: 0px;
+}
+
+}
+/* ------------------------------------Main Section 2-------------------------------------- */
+#section2 {
+	background-color: rgb(229, 227, 219);
+	width: 100%;
+	height: 100vh;
+}
+
+#section2 h1 {
+	position: absolute;
+	left: 1351px;
+	padding-top: 124px;
+	font-size: 3rem;
+	line-height: 1;
+	border-bottom: solid;
+}
+
+.text1 {
+	position: relative;
+	bottom: 127px;
+}
+
+#section2 p {
+	width: 85%;
+	position: absolute;
+	font-size: 1.5rem;
+	padding-left: 1139px;
+	padding-top: 335px;
+}
+
+#container3 img {
+	position: relative;
+	width: 50%;
+	padding-top: 228px;
+	padding-left: 200px;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+	background-color: black;
+	margin-top: 200px;
+}
+
+.carousel-fade .carousel-item {
+	background-color: rgb(229, 227, 219);
+}
+
+/* ------------------------------------Main Section 3-------------------------------------- */
+#section3 {
+	width: 100%;
+	height: 100vh;
+	background-color: rgb(193, 193, 191);
+	border-radius: 25px;
+	z-index: 2;
+}
+
+.container1 h1 {
+	position: absolute;
+	padding-top: 60px;
+	border-bottom: solid;
+	font-size: 4rem;
+	padding-left: 200px;
+	animation: slide4 2s;
+}
+
+.container1 a {
+	font-size: 2rem;
+	position: relative;
+	font-size: 2rem;
+	left: 580px;
+	top: 354px;
+	color: black;
+}
+
+.container1 a {
+	text-decoration: none;
+	position: relative;
+}
+
+.container1 a::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0%;
+	height: 3px;
+	background-color: black;
+	transition: width 0.7s ease;
+}
+
+.container1 a:hover::after {
+	width: 100%;
+}
+
+@keyframes slide4 {from { left:-200px;
+	
+}
+
+to {
+	left: 0px;
+}
+
+}
+@keyframes out4 {from { left:-200px;
+	
+}
+
+to {
+	left: 0px;
+}
+
+}
+.container1 p {
+	position: absolute;
+	width: 550px;
+	font-size: 1.5rem;
+	padding-top: 150px;
+	padding-left: 20px;
+}
+
+.container2 h1 {
+	position: absolute;
+	top: 2360px;
+	font-size: 4rem;
+	padding-left: 1020px;
+	border-bottom: solid;
+	animation: slide5 1s;
+}
+
+.container2 li {
+	position: relative;
+	width: 580px;
+	font-size: 2rem;
+	left: 1203px;
+	bottom: 480px;
+}
+
+@keyframes slide5 {from { left:-500px;
+	
+}
+
+to {
+	left: 0px;
+}
+
+}
+@keyframes out5 {from { left:-500px;
+	
+}
+
+to {
+	left: 0px;
+}
+
+}
+.container-blackbox {
+	position: relative;
+	left: 1126px;
+	width: 696px;
+	height: 451px;
+	top: -60px;
+	background-color: rgba(0, 0, 0, 0.245);
+	z-index: 1;
+}
+
+.container2 img {
+	position: relative;
+	width: 696px;
+	height: 451px;
+	left: 1126px;
+	bottom: 511px;
+}
+
+#section3 {
+	font-size: 2.5rem;
+}
+
+.Floor {
+	position: absolute;
+	font-style: italic;
+	left: 20px;
+}
+
+.Floor :nth-child(1) {
+	position: relative;
+	width: 100%;
+	font-size: 11rem;
+	top: -512px;
+	opacity: 50%;
+	animation: slide6 1.5s;
+}
+
+@keyframes slide6 {from { left:-500px;
+	
+}
+
+to {
+	left: 0px;
+}
+
+}
+@keyframes out6 {from { left:-500px;
+	
+}
+
+to {
+	left: 0px;
+}
+
+}
+.Floor :nth-child(2) {
+	position: relative;
+	width: 100%;
+	font-size: 11rem;
+	top: -616px;
+	left: 300px;
+	opacity: 50%;
+	animation: slide7 2s;
+}
+
+@keyframes slide7 {from { left:1500px;
+	
+}
+
+to {
+	left: 300px;
+}
+
+}
+@keyframes out7 {from { left:1500px;
+	
+}
+
+to {
+	left: 300px;
+}
+
+}
+
+/* ------------------------------------Main Section 4-------------------------------------- */
+#section4 {
+	background-color: rgb(229, 227, 219);
+	width: 100%;
+}
+
+.line1 {
+	left: 50px;
+	width: 93%;
+	border-bottom: 1px solid;
+	position: relative;
+	top: 90px;
+}
+
+.section4_login {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	top: 294px;
+}
+
+#title {
+	position: relative;
+	left: 80px;
+	bottom: 80px;
+}
+
+#title h2 {
+	font-size: 3.5rem;
+	font-weight: bolder;
+}
+
+#title p {
+	font-size: 1.5rem;
+}
+
+.section4_login a {
+	position: relative;
+	right: 250px;
+	display: flex;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 20px;
+	color: black;
+	font-size: 3rem;
+	bottom: 90px;
+}
+
+.section4_login a:hover {
+	background-color: black;
+	color: white;
+}
+
+/* -------------------------------------- Footer -------------------------------------- */
+.line2 {
+	left: 28px;
+	width: 97%;
+	border-bottom: 1px solid;
+	position: relative;
+	top: 335px;
+}
+
+footer {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	top: 250px;
+}
+
+.row_left {
+	position: relative;
+	left: 120px;
+	top: 110px;
+}
+
+.row_left h3 {
+	width: 60%;
+	font-size: 4rem;
+	font-weight: bold;
+}
+
+.row_left a {
+	font-size: 2.5rem;
+}
+
+.row_left p {
+	position: relative;
+	font-size: 4rem;
+	right: 80px;
+	width: 10%;
+	left: -82px;
+}
+
+.row_center {
+	position: relative;
+	font-size: 2rem;
+	right: 200px;
+	top: 90px;
+}
+
+.row_SNS {
+	position: relative;
+	font-size: 2rem;
+	right: 200px;
+	top: 90px;
+}
+
+.row_SNS a ul::after {
+	content: "";
+	position: absolute;
+	bottom: 5px;
+	left: 0;
+	width: 0%;
+	height: 2px;
+	background-color: white;
+	transition: width 0.5s ease;
+}
+
+.row_SNS a ul:hover::after {
+	width: 100%;
+}
+
+.impormation {
+	position: relative;
+	font-size: 1.2rem;
+	font-weight: bold;
+	right: 100px;
+	top: 90px;
+}
+
+footer {
+	margin: 0;
+	padding: 0;
+	height: 30vh;
+}
+
+body>p {
+	width: 100%;
+	height: 60px;
+	color: white;
+	font-size: 3rem;
+	font-weight: bold;
+	/* font-style: Monospace; */
+}
+
+.title {
+	font-size: 3rem;
+	position: relative;
+	left: 86px;
+	top: 111px;
+	height: 73px;
+}
+
+.left>h5 {
+    top: 170px;
+    position: relative;
+    right: 90px;
+}
+
+footer .left {
+	height: 200px;
+	width: 33%;
+}
+
+.left h4 {
+	position: relative;
+	width: 386px;
+	top: 207px;
+	right: 93px;
+	font-size: 1.4rem;
+}
+
+.left>p {
+    position: relative;
+    top: 242px;
+    right: 95px;
+}
+
+.left h1 {
+	position: relative;
+	font-size: 1.2rem;
+    right: 94px;
+    top: 264px;
+	color: black;
+}
+
+/* --------------------------------------------------------------------- */
+footer .center {
+	height: 200px;
+	width: 43%;
+}
+
+.center ul {
+	width: 230px;
+	right: 56px;
+	position: relative;
+	font-size: 1.1rem;
+	top: 195px;
+	color: black;
+}
+
+.center ul li {
+	margin: 10px;
+	font-size: 1.2rem;
+}
+
+.center span {
+	position: relative;
+	font-size: 1.4rem;
+	top: 218px;
+	right: 55px;
+}
+
+.center span a {
+	margin: 25px;
+	color: black;
+}
+
+.center span :hover {
+	opacity: 0.85;
+}
+
+span a {
+	text-decoration: none;
+	position: relative;
+}
+
+span a::after {
+	content: "";
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	width: 0%;
+	height: 3px;
+	background-color: rgba(0, 0, 0, 0.568);
+	transition: width 0.5s ease;
+}
+
+span a:hover::after {
+	width: 100%;
+}
+
+/* --------------------------------------------------------------------- */
+footer .right {
+	position: relative;
+	width: 500px;
+	font-size: 1rem;
+	top: 103px;
+}
+
+footer .right h2 {
+	font-size: 1.2rem;
+}
+
+.right div a {
+	margin: 4px;
+	position: relative;
+	top: 51px;
+	color: black;
+}
+
+.right div a:hover {
+	opacity: 0.7;
+}
+
+footer img {
+	vertical-align: middle;
+	color: black;
+	position: relative;
+	left: 259px;
+	top: 18px;
+}

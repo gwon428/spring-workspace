@@ -1,0 +1,28 @@
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="com.semi.model.vo.User" alias="User" />
+		<typeAlias type="com.semi.model.vo.Collect" alias="Collect" />
+		<typeAlias type="com.semi.model.vo.Review" alias="Review" />
+		<typeAlias type="com.semi.model.vo.Qna" alias="Qna"/>
+		<typeAlias type="com.semi.model.vo.PagingQna" alias="PagingQna"/>
+		<typeAlias type="com.semi.model.vo.Pagingseven" alias="Pagingseven"/>
+		<typeAlias type="com.semi.model.vo.Paging" alias="Paging" />
+		<typeAlias type="com.semi.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="com.semi.model.vo.QnaAnswer" alias="QnaAnswer"/>
+	</typeAliases>
+
+	<!-- 쿼리문 -->
+	<mappers>
+		<mapper resource="mappers/user-mapper.xml" />
+		<mapper resource="mappers/collect-mapper.xml" />
+		<mapper resource="mappers/review-mapper.xml" />
+		<mapper resource="mappers/qna-mapper.xml"/>
+		<mapper resource="mappers/notice-mapper.xml"/>
+		<mapper resource="mappers/qnaAnswer-mapper.xml"/>
+	</mappers>
+</configuration>

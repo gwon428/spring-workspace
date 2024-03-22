@@ -1,0 +1,188 @@
+@font-face {
+	font-family: "Cafe24Oneprettynight";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff") format("woff");
+	font-style: normal;
+}
+
+#top {
+	background-image: url(../../../resources/images/qna.jpg);
+	background-size: cover;
+	background-position: center;
+	height: 85vh;
+	width: 100%;
+}
+
+.blackbox {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.top-content {
+	width: 500px;
+	height: 85%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+h2 {
+	position: absolute;
+	top: 460px;
+	left: 35px;
+	font-size: 5rem;
+	color: white;
+	margin-left: 40px;
+	animation: slide 1.8s;
+	font-family: "Cafe24Oneprettynight";
+}
+
+@keyframes slide {
+	from {
+		left: -300px;
+	}
+
+	to {
+		left: 35px;
+	}
+}
+
+<!-- -----------------------------------main----------------------------- -->
+.main {
+	height: 83vh;
+	margin-top: 70px;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.header h1 {
+	font-size: 4rem;
+	font-weight: bolder;
+	font-family: "Cafe24Oneprettynight";
+	margin-top : 25px;
+}
+
+#writeQna {
+	position: relative;
+	left: 450px;
+	margin: 20px 0;
+	padding: 7px;
+	font-size: 1rem;
+	background-color: #93b19a;
+	color: white;
+	border: none;
+	font-family: "Cafe24Oneprettynight";
+	border-radius: 6px;
+
+}
+
+#writeQna:hover {
+	background-color: white;
+	border: 2px solid #93b19a;
+	color: #93b19a;
+	font-family: "Cafe24Oneprettynight";
+	font-weight: bolder;
+}
+
+table {
+	margin: 12px 0;
+	position: relative;
+	border-top: 1px solid #757575;
+	border-bottom: 1px solid #757575;
+	min-height: 540px;
+	width: 950px;
+}
+
+tr {
+	position: relative;
+	display: grid;
+	grid-template-columns: 0.5fr 3fr 1fr 1fr 0.5fr;
+	width: 950px;
+	height: 49px;
+	border-bottom: 1px solid #eaeaea;
+}
+
+th {
+	font-family: "Cafe24Oneprettynight";
+	font-size: 1rem;
+	font-weight: bolder;
+	margin: 10px 0;
+}
+
+td {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Cafe24Oneprettynight";
+	font-weight: bolder;
+}
+
+.pagination {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.page-link {
+
+	margin: 0 10px;
+	font-family: "Cafe24Oneprettynight";
+	font-weight: bolder;
+	font-size: 15px;
+}
+
+#page_num {
+	display: inline-block;
+	text-align: center;
+	font-size: 16px;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+}
+#findQna{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin-top: 10px;
+    margin-bottom: 40px;
+}
+#findQna select{
+	font-family: "Cafe24Oneprettynight";	
+	font-weight : bold;
+	height: 22px;
+}
+#findQna select>option {
+	font-family: "Cafe24Oneprettynight";
+	font-weight : bold;
+}
+#pwdCheck > input#password{
+	height: 22px;
+}
+
+#searchOk{
+	background-color: #cddbcf;
+    border: none;
+    color: black;
+    font-size: 0.9rem;
+    padding: 4px 11px;
+    font-family: "Cafe24Oneprettynight";
+    border-radius: 3px;
+    font-weight: bolder;
+}
+#searchOk:hover{
+	border: 4px solid #cddbcf;
+    background-color: white;
+    font-size: 0.9rem;
+    padding: 0px 7px;
+    font-family: "Cafe24Oneprettynight";
+    border-radius: 3px;
+    font-weight: bolder;
+}

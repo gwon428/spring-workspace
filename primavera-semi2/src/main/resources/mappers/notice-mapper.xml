@@ -1,0 +1,58 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="noticeMapper">
+
+	<!-- vo에 변수랑 SQL에 컬럼명이 다르기 때문에 전부다 resultMap사용 -->
+	<resultMap type="Notice" id="NoticeMap">
+		<id property="noticeNum" column="notice_num" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="id" column="id" />
+		<result property="url" column="url" />
+		<result property="writeDate" column="write_date" />
+	</resultMap>
+
+	<!-- 1. noticeList의 공지사항전체 -->
+	<select id="selectAll" resultMap="NoticeMap"
+		parameterType="Paging">
+		SELECT *
+		FROM notice
+		ORDER BY 1 desc
+		LIMIT #{offset}, #{limit}
+	</select>
+
+	<!-- 1. noticeWrite.jsp에 쓰일 것들 -->
+	<insert id="insert" parameterType="Notice"
+		useGeneratedKeys="true" keyProperty="noticeNum" keyColumn="notice_num">
+		INSERT INTO
+		notice
+		(title, content, url)
+		VALUES(#{title}, #{content}, #{url})
+	</insert>
+
+	<!-- 1. noticeWrite 넘버를 통해서 우리가 찾는! -->
+	<select id="select" parameterType="int" resultMap="NoticeMap">
+		SELECT * FROM
+		notice
+		WHERE notice_num=#{noticeNum}
+		
+	</select>
+
+	<select id="total" resultType="int">
+		SELECT count(*) FROM notice
+	</select>
+
+	<update id="update" parameterType="Notice">
+		UPDATE notice
+		SET
+		title=#{title}, content=#{content}, url=#{url}
+		WHERE
+		notice_num=#{noticeNum}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM notice
+		WHERE
+		notice_num=#{noticeNum}
+	</delete>
+
+</mapper>

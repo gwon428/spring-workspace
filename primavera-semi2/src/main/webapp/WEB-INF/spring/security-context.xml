@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd">
+
+	<bean id="userLoginFailHandler"
+		class="com.semi.util.UserLoginFailHandler" />
+	<bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<context:component-scan base-package="com.semi"></context:component-scan>
+	<bean id="userService" class="com.semi.service.UserService" />
+
+
+	<security:http>
+		<security:form-login login-processing-url="/login"
+			authentication-failure-handler-ref="userLoginFailHandler" />
+		<security:csrf disabled="true" />
+		<security:intercept-url pattern="/login"
+			access="permitAll" />
+		<security:access-denied-handler
+			error-page="/error" />
+		<security:logout logout-url="/logout"
+			invalidate-session="true" delete-cookies="Logout"
+			logout-success-url="/" />
+	</security:http>
+
+	<!-- 인증 매니저 : 다양한 방식의 인증을 처리할 수 있도록 설계 -->
+	<security:authentication-manager>
+		<security:authentication-provider
+			user-service-ref="userService">
+			<security:password-encoder hash="bcrypt" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

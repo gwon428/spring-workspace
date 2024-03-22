@@ -1,0 +1,95 @@
+@font-face {
+	font-family: "Cafe24Oneprettynight";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff") format("woff");
+	font-style: normal;
+}
+#pwd_check{
+	cursor : pointer;
+}
+<!-- ------------modal 파트------------------ -->
+#modalOpenButton, #modalCloseButton {
+  cursor: pointer;
+}
+#modalContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  
+}
+
+#modalContent {
+  position: absolute;
+  background-color: #cddbcf;
+  width: 300px;
+  height: 150px;
+  padding: 15px;
+  border-radius : 10px;
+  display:flex;
+  flex-direction:column;
+}
+#modalContent h3{
+	font-family: "Cafe24Oneprettynight";
+	font-size : 1.3rem;
+	font-weight : bold;
+	border-bottom : 1px solid black;
+	padding-bottom : 7px;
+	margin-bottom:9px;
+}
+
+
+#pwdCheck{
+	display:flex;
+	flex-direction:column;
+}
+#pwdCheck label{
+	font-family: "Cafe24Oneprettynight";
+	font-weight : bold;
+	font-size : 0.9rem;
+}
+#pwdCheck #password{
+	margin-top : 7px;
+	width : 160px;
+}
+#pwdCheck #modal_btn{
+	margin-top : 10px;
+	border : none;
+	border-radius : 10px;
+	height: 26px;
+    width: 120px;
+    display:flex;
+}
+#pwdSubmit{
+	background-color : #364b3b;
+	color : white;
+	font-family: "Cafe24Oneprettynight";
+	margin-right : 10px;
+	border-radius:3px;
+}
+#modal_btn #pwdSubmit:hover{
+	color : #364b3b;
+	background-color : white;
+	font-weight: bold;
+}
+#modalCloseButton{
+	background-color : black;
+	color : white;
+	border-radius:3px;
+	font-family: "Cafe24Oneprettynight";
+}
+#modalCloseButton:hover{
+	color : black;
+	background-color : white;
+	font-weight: bold;
+}
+#modalContainer.hidden {
+  display: none;
+}
+
+
+

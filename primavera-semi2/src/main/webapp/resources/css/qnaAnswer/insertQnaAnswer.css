@@ -1,0 +1,181 @@
+@font-face {
+  font-family: "Cafe24Oneprettynight";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff")
+    format("woff");
+  font-style: normal;
+}
+/* ----------------------------- 전체 틀 ---------------------------*/
+body {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#allContent {
+  border: 2px solid #81a488;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  height: 600px;
+  grid-template-columns: 0.7fr 1fr;
+  border-radius: 20px;
+}
+.qnaAll {
+  border-right: 1px dashed #81a488;
+  width: 100%;
+  height: 100%;
+  background-image: url(../../../resources/images/insertAnswer.jpg);
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.back_black {
+  width: 410px;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  height: 598px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+/*----------------------------------- qna내용단 -----------------------------------------*/
+#qna_content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+#qna_content h1 {
+  font-family: "Cafe24Oneprettynight";
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin: 50px 0px;
+}
+session#contents{
+  width:270px;
+}
+#contents div{
+  margin-bottom: 20px;
+}
+#contents label {
+  font-family: "Cafe24Oneprettynight";
+  font-weight: bold;
+  color: white;
+}
+#contents input{
+  font-family: "Cafe24Oneprettynight";
+  font-weight: bold;
+  width : 50%;
+  border-radius:3px;
+}
+#contents textarea{
+  font-family: "Cafe24Oneprettynight";
+  font-weight: bold;
+  margin-top: 10px;
+  border-radius:3px;
+  width: 270px;
+}
+
+div#qnaNum input {
+  margin-left: 14px;
+}
+div#qnaTitle textarea {
+  height: 60px;
+}
+div#qnaContent textarea {
+  height: 100px;
+}
+div#qnaUrl img {
+  width: 100px;
+  height: 100px;
+}
+/*----------------------------------- qna answer내용단 -----------------------------------------*/
+.qnaAnswer {
+  width: 100%;
+  height: 100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.qnaAnswer h1 {
+  font-family: "Cafe24Oneprettynight";
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: #779d7f;
+  margin: 50px 0px;
+}
+div.insertAnswer{
+	font-family: "Cafe24Oneprettynight";
+  	font-weight: bold;
+  	margin-bottom : 30px;
+}
+.insertAnswer #id{
+	margin-left : 10px;
+	border-radius:3px;
+}
+.insertAnswer #qnaNum{
+	margin-left : 44px;
+	border-radius:3px;
+}
+.insertAnswer #content{
+  font-family: "Cafe24Oneprettynight";
+  font-weight: bold;
+  margin-top: 10px;
+  border-radius:3px;
+  width: 290px;
+  height : 100px;
+}
+
+#img_input {
+    width: 90px;
+    height: 90px;
+    border-radius: 8px;
+    border: 0.5px solid #d1d1d1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 96px;
+    margin-top: 3px;
+}
+#photo{
+	cursor: pointer;
+}
+img{
+	width:92px;
+	height:92px;
+}
+#answerButton{
+  display:flex;
+  align-items:center;
+  justify-content : center;
+  
+}
+#btn_insert{
+	font-family: "Cafe24Oneprettynight";
+  font-weight: bold;
+  font-size : 1rem;
+  width : 60px;
+  height: 25px;
+  border : none;
+  border-radius:3px;
+  background-color: #779d7f;
+  color : black;
+}
+#btn_insert:hover{
+	background-color : white;
+	color : #779d7f;
+	border : 2px solid #779d7f;
+	border-radius : 3px;
+	
+}

@@ -1,0 +1,201 @@
+@font-face {
+  font-family: "GangwonEdu_OTFBoldA";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Cafe24Oneprettynight";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff")
+    format("woff");
+  font-style: normal;
+}
+
+body {
+  height: 100vh;
+  font-weight: bolder;
+}
+
+#back {
+  background-image: url(../../../resources/images/top-background.jpg);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    left: 23%;
+    top: 13%;
+    width: 1020px;
+    height: 80vh;
+    border-radius: 20px;
+    border-style: none;
+}
+#back_black {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+}
+
+#pickUp {
+  height: 200px;
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  position: relative;
+  left: 6.5%;
+  top: -65%;
+}
+
+#header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  margin-top: 55px;
+  margin-bottom: 20px;
+  font-style: italic;
+  font-size: 1.4rem;
+  width: 10%;
+  color: white;
+}
+
+#ps {
+  font-size: 0.7rem;
+  position: relative;
+  left: 160%;
+  top: 26%;
+  font-family: "Cafe24Oneprettynight";
+  color: white;
+}
+
+#pickUpTable {
+  width: 95%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 90px;
+    grid-template-rows: 100px 100px 100px 200px;
+    border: 1px solid black;
+    border-radius: 20px;
+    grid-auto-flow: column;
+    font-family: "Cafe24Oneprettynight";
+    padding: 20px;
+    background-color: white;
+    border-style: none;
+}
+
+p {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  font-size: 1.1rem;
+}
+
+#idCheck{
+	margin-left : 10px;
+	font-size : 0.6rem;
+	color : red;
+}
+
+input,
+button,
+textarea {
+  margin-left: 20px;
+  font-family: "Cafe24Oneprettynight";
+  font-weight: bolder;
+}
+
+.id input,
+.name input,
+.phone input,
+.collectDate input {
+  height: 35%;
+  width: 45%;
+}
+
+.addr input {
+  width: 40%;
+  height: 20%;
+}
+#kg{
+	width: 170px;
+    height: 35px;
+}
+textarea#request {
+  resize: none;
+  width: 310px;
+  height:100px;
+}
+
+#postCode,
+#roadAddress,
+#detailAddress {
+  margin-bottom: 20px;
+}
+
+#agree_check {
+  font-family: "GangwonEdu_OTFBoldA";
+  position: relative;
+  top: -78px;
+}
+
+#agree_text {
+  font-size: 1rem;
+  margin-bottom: 3px;
+}
+
+#agree_text .btn_open {
+  font-weight: 700;
+  text-decoration-line: underline;
+}
+
+#button {
+  background-color: black;
+  color: white;
+  width: 110px;
+  height: 45px;
+  border-style: none;
+  margin-top: -13px;
+}
+
+#button:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.pop_wrap {
+  visibility: hidden;
+  border: 1px solid black;
+  position: fixed;
+  top: 19%;
+  left: 40%;
+  box-sizing: border-box;
+  width: 400px;
+  height: 550px;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.pop_inner {
+  line-height: 23px;
+  font-size: 13px;
+  margin: 0 8px;
+}
+
+.btn_close {
+  position: absolute;
+  left: 40%;
+  margin-top: 5px;
+}
+
+#pop_head {
+  display: flex;
+  justify-content: space-between;
+}
