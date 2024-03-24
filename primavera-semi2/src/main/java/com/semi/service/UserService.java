@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -40,26 +41,11 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private UserDAO dao;
 
+	/*------------------------------------------ 로그인 ------------------------------------------*/
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = dao.getMemberById(username);
 		return user;
-	}
-
-	public User idCheck(String id) {
-		return dao.check(id);
-	}
-
-	public User phoneCheck(String phone) {
-		return dao.phonecheck(phone);
-	}
-
-	public User emailCheck(String email) {
-		return dao.emailcheck(email);
-	}
-
-	public User userCheck(User user) {
-		return dao.checkUser(user);
 	}
 
 	// 카카오 로그인
@@ -84,7 +70,6 @@ public class UserService implements UserDetailsService {
 			bw.flush();
 			// 결과 코드가 200이라면 성공
 			int responseCode = conn.getResponseCode();
-			System.out.println("responseCode : " + responseCode);
 			// 요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line = "";
@@ -92,14 +77,11 @@ public class UserService implements UserDetailsService {
 			while ((line = br.readLine()) != null) {
 				result += line;
 			}
-			System.out.println("response body : " + result);
 			JsonParser parser = new JsonParser();
 			JsonElement element = parser.parse(result);
-			
+
 			access_Token = element.getAsJsonObject().get("access_token").getAsString();
 			refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
-			System.out.println("access_token : " + access_Token);
-			System.out.println("refresh_token : " + refresh_Token);
 			br.close();
 			bw.close();
 		} catch (IOException e) {
@@ -107,7 +89,7 @@ public class UserService implements UserDetailsService {
 		}
 		return access_Token;
 	}
-	
+
 	public User getUserInfo(String access_Token) {
 		HashMap<String, Object> userInfo = new HashMap<String, Object>();
 		String reqURL = "https://kapi.kakao.com/v2/user/me";
@@ -135,12 +117,12 @@ public class UserService implements UserDetailsService {
 		}
 		// 정보가 저장되어있는지 확인
 		User result = dao.findkakao(userInfo);
-		if(result == null) {
+		if (result == null) {
 			dao.kakaoinsert(userInfo);
 			return dao.findkakao(userInfo);
 			// 가입 후 픽업 신청 시 회원 정보를 수정하도록.
 			// 이 때 비밀번호 설정해도 저장 안 되는 이유?가 뭔지..
-			} else {
+		} else {
 			UserDetails user = loadUserByUsername(result.getId());
 			Authentication auth = new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
 			SecurityContext context = SecurityContextHolder.createEmptyContext();
@@ -150,16 +132,41 @@ public class UserService implements UserDetailsService {
 		}
 	}
 
+	/*------------------------------------------ 회원가입 ------------------------------------------*/
+	// 아이디 중복 체크
+	public User idCheck(String id) {
+		return dao.check(id);
+	}
+
+	// 전화번호 중복 체크
+	public User phoneCheck(String phone) {
+		return dao.phonecheck(phone);
+	}
+
+	// 이메일 중복 체크
+	public User emailCheck(String email) {
+		return dao.emailcheck(email);
+	}
+
+	// 회원가입 + 비밀번호 암호화
 	public int registerUser(User user) {
 		String encodePw = bcpe.encode(user.getPassword());
 		user.setPassword(encodePw);
 		return dao.registerUser(user);
 	}
 
+	/*------------------------------------------ 회원 정보 수정 ------------------------------------------*/
+	// 회원 정보 수정 시 본인일 경우 (전화번호, 이메일 중복 가능하게)
+	public User userCheck(User user) {
+		return dao.checkUser(user);
+	}
+	
+	// 회원 정보 수정 + 비밀번호 암호화
 	public int updateUser(User user) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User userDetails = (User) principal;
 
+		userDetails.setPassword(user.getPassword());
 		String inputPw = bcpe.encode(user.getPassword());
 		user.setPassword(inputPw);
 
@@ -169,86 +176,113 @@ public class UserService implements UserDetailsService {
 
 		return dao.updateUser(user);
 	}
-	
+
+	/*------------------------------------------ 로그아웃 ------------------------------------------*/
+	// 카카오 로그아웃
 	public void logout(String access_Token) {
 		String reqURL = "https://kapi.kakao.com/v1/user/logout";
-	    try {
-	        URL url = new URL(reqURL);
-	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        conn.setRequestMethod("POST");
-	        conn.setRequestProperty("Authorization", "Bearer " + access_Token);
-	        
-	        int responseCode = conn.getResponseCode();
-	        System.out.println("responseCode : " + responseCode);
-	        
-	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-	        
-	        String result = "";
-	        String line = "";
-	        
-	        while ((line = br.readLine()) != null) {
-	            result += line;
-	        }
-	        System.out.println(result);
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+		try {
+			URL url = new URL(reqURL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+
+			int responseCode = conn.getResponseCode();
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+			String result = "";
+			String line = "";
+
+			while ((line = br.readLine()) != null) {
+				result += line;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
-	// 회원 탈퇴 시 연결 끊기
+
+	/*------------------------------------------ 회원 탈퇴 ------------------------------------------*/
+	// 카카오 회원 탈퇴
 	public void unlink(String link) {
 		String reqURL = "https://kapi.kakao.com/v1/user/unlink";
 		try {
-	        URL url = new URL(reqURL);
-	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        conn.setRequestMethod("POST");
-	        conn.setRequestProperty("Authorization", "Bearer " + link);
-	        
-	        int responseCode = conn.getResponseCode();
-	        System.out.println("responseCode : " + responseCode);
-	        
-	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-	        
-	        String result = "";
-	        String line = "";
-	        
-	        while ((line = br.readLine()) != null) {
-	            result += line;
-	        }
-	        System.out.println(result);
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+			URL url = new URL(reqURL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "Bearer " + link);
+
+			int responseCode = conn.getResponseCode();
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+			String result = "";
+			String line = "";
+
+			while ((line = br.readLine()) != null) {
+				result += line;
+			}
+			System.out.println(result);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails)principal;
-		
-		System.out.println("Service userDetails : " + userDetails);
+		UserDetails userDetails = (UserDetails) principal;
+
 		// DB에서도 삭제
 		dao.deleteUser(userDetails);
 	}
 
+	// 회원 탈퇴
 	public int deleteUser(UserDetails userDetails) {
 		return dao.deleteUser(userDetails);
 	}
 
+	/*------------------------------------------ 비회원 ------------------------------------------*/
+	/*------------------------------------------ 아이디 찾기 ------------------------------------------*/
+	public User findId(User user) {
+		return dao.findId(user);
+	}
+
+	/*------------------------------------------ 비밀번호 찾기 ------------------------------------------*/
+	public User checkEmail(User user) {
+		return dao.checkEmail(user);
+	}
+
+	// 비밀번호 재설정
+	public int updatePwd(User user) {
+		String inputPw = bcpe.encode(user.getPassword());
+		user.setPassword(inputPw);
+		return dao.updatePwd(user);
+	}
+	
+	/*------------------------------------------ 관리자 ------------------------------------------*/
+	// 전체 회원 조회
 	public List<User> showAllUser(Paging paging) {
 		paging.setOffset(paging.getLimit() * (paging.getPage() - 1));
 		return dao.showAllUser(paging);
 	}
 
+	// 전체 회원 조회 total
 	public int total() {
 		return dao.total();
 	}
-
-	public User findId(User user) {
-		return dao.findId(user);
+	
+	/*------------------------------------------ 수거신청 현황 ------------------------------------------*/
+	// 수집일 순 정렬
+	public List<User> showUsercolDate(Paging paging) {
+		paging.setOffset(paging.getLimit() * (paging.getPage() - 1));
+		return dao.showUsercolDate(paging);
 	}
 
-	public User checkEmail(User user) {
-		return dao.checkEmail(user);
+	// 주문번호 순 정렬
+	public List<User> showUserorderNum(Paging paging) {
+		paging.setOffset(paging.getLimit() * (paging.getPage() - 1));
+		return dao.showUserorderNum(paging);
 	}
 
-	// 내가 쓴 후기 리스트 출력
+	/*------------------------------------------ 회원 ------------------------------------------*/
+	// 내가 쓴 review 리스트 출력
 	public List<Review> showReview(Pagingseven paging) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = (UserDetails) principal;
@@ -259,6 +293,7 @@ public class UserService implements UserDetailsService {
 		return dao.showReview(paging);
 	}
 
+	// review 페이징 처리 total
 	public int showReviewtotal() {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = (UserDetails) principal;
@@ -277,30 +312,12 @@ public class UserService implements UserDetailsService {
 		return dao.showQna(paging);
 	}
 
+	// qna 페이징 처리 total
 	public int showQnatotal() {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = (UserDetails) principal;
 		return dao.totalmyQna(userDetails.getUsername());
 	}
 
-	public int updatePwd(User user) {
-		String inputPw = bcpe.encode(user.getPassword());
-		user.setPassword(inputPw);
-		return dao.updatePwd(user);
-	}
-
-	// 수집일 순
-	public List<User> showUsercolDate(Paging paging) {
-		paging.setOffset(paging.getLimit() * (paging.getPage() - 1));
-		return dao.showUsercolDate(paging);
-	}
-
-	// 주문번호 순
-	public List<User> showUserorderNum(Paging paging) {
-		paging.setOffset(paging.getLimit() * (paging.getPage() - 1));
-		return dao.showUserorderNum(paging);
-	}
-
-	
 
 }

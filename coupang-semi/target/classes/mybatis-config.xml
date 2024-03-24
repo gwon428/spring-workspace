@@ -4,13 +4,20 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
-	<!--  VO, DTO 등록 하는 곳! -->
+	<!-- VO, DTO 등록 하는 곳! -->
 	<typeAliases>
 		<typeAlias type="com.semi.coupang.model.vo.Category" alias="Category"/>
+		<typeAlias type="com.semi.coupang.model.vo.Product" alias="Product"/>
+		<typeAlias type="com.semi.coupang.model.vo.User" alias="User"/>
+		<typeAlias type="com.semi.coupang.model.vo.Pick" alias="Pick"/>
 	</typeAliases>
 	
-	<!-- mappers 파일들 등록하는 곳! -->
+	<!-- mapper 파일들 등록하는 곳! -->
 	<mappers>
-		<mapper resource="mappers/category-mapper.xml"/>	
+		<mapper resource="mappers/category-mapper.xml"/>
+		<mapper resource="mappers/product-mapper.xml"/>
+		<mapper resource="mappers/user-mapper.xml"/>
+		<mapper resource="mappers/pick-mapper.xml"/>
 	</mappers>
+	
 </configuration>

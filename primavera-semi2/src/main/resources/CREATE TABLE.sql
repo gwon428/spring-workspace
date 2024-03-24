@@ -2,23 +2,22 @@ DROP TABLE review;
 DROP TABLE notice;
 DROP TABLE qna_answer;
 DROP TABLE qna;
-DROP TABLE user;
 DROP TABLE collect;
-
+DROP TABLE user;
 
 CREATE TABLE user(
     id VARCHAR(20) NOT NULL UNIQUE,
-    password VARCHAR(200) NOT NULL,
+    password VARCHAR(200) ,
 	name VARCHAR(20) NOT NULL,
-	phone VARCHAR(13) NOT NULL UNIQUE,
-	post_code INT NOT NULL,
-	road_address VARCHAR(30) NOT NULL,
-	detail_address VARCHAR(30) NOT NULL,
-	email VARCHAR(50) NOT NULL UNIQUE,
-	bank_name VARCHAR(20) NOT NULL,
-	account VARCHAR(20) NOT NULL,
+	phone VARCHAR(13) UNIQUE,
+	post_code INT,
+	road_address VARCHAR(30),
+	detail_address VARCHAR(30),
+	email VARCHAR(50) UNIQUE,
+	bank_name VARCHAR(20),
+	account VARCHAR(20),
     auth VARCHAR(10) DEFAULT 'MEMBER',
-    enabled INT DEFAULT 1
+    kakao CHAR(1) CHECK(secret IN('Y', 'N')) DEFAULT 'Y'
 );
 
 CREATE TABLE collect(

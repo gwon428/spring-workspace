@@ -32,7 +32,7 @@
 
 		<div id="sideMenu">
 			<a href="showReview" id="showReview">My Review</a> <a href="showQna">내 Q&A</a> <a
-				href="showCollect">진행 상황</a> <a href="updateUser" id="update">회원
+				href="showCollect">진행 상황</a> <a href="userUpdate" id="update">회원
 				정보 수정</a> <a href="deleteUser">회원 탈퇴</a> <a href="logout">로그아웃</a>
 		</div>
 

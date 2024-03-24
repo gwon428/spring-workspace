@@ -12,13 +12,20 @@ import com.semi.coupang.service.CategoryService;
 
 @Controller
 public class CategoryController {
-	
+
 	@Autowired
 	private CategoryService service;
 	
 	@ResponseBody
 	@GetMapping("/category")
-	public List<Category> category(){
+	public List<Category> category() {
 		return service.viewCategoryList();
 	}
+	
 }
+
+
+
+
+
+

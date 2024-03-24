@@ -2,106 +2,149 @@
 
 <mapper namespace="userMapper">
 	<resultMap type="User" id="userMap">
-		<result property="id" column="id"/>
-		<result property="password" column="password"/>
-		<result property="name" column="name"/>
-		<result property="phone" column="phone"/>
-		<result property="postCode" column="post_code"/>
-		<result property="roadAddress" column="road_address"/>
-		<result property="detailAddress" column="detail_address"/>
-		<result property="email" column="email"/>
-		<result property="bankName" column="bank_name"/>
-		<result property="account" column="account"/>
-		<result property="auth" column="auth"/>
-		<result property="kakao" column="kakao"/>
+		<result property="id" column="id" />
+		<result property="password" column="password" />
+		<result property="name" column="name" />
+		<result property="phone" column="phone" />
+		<result property="postCode" column="post_code" />
+		<result property="roadAddress" column="road_address" />
+		<result property="detailAddress" column="detail_address" />
+		<result property="email" column="email" />
+		<result property="bankName" column="bank_name" />
+		<result property="account" column="account" />
+		<result property="auth" column="auth" />
+		<result property="kakao" column="kakao" />
 	</resultMap>
-	
+
+	<!-- 로그인 -->
+	<select id="getMemberById" parameterType="String"
+		resultMap="userMap">
+		SELECT * FROM user
+		WHERE id=#{id}
+	</select>
+
+	<!-- 카카오 로그인 -->
+	<select id="findkakao" parameterType="java.util.HashMap"
+		resultType="User">
+		SELECT * FROM user
+		WHERE name = #{name}
+		AND id=#{id}
+	</select>
+
+	<!-- 카카오 회원가입 -->
+	<insert id="kakaoInsert" parameterType="java.util.HashMap">
+		INSERT INTO user(id,
+		name, kakao)
+		VALUES(#{id}, #{name}, 'Y')
+	</insert>
+
+
+	<!-- 회원가입 -->
+	<!-- 아이디 중복 체크 -->
 	<select id="idCheck" parameterType="String" resultMap="userMap">
 		SELECT *
 		FROM user
 		WHERE id=#{id}
 	</select>
 
-	<select id="phoneCheck" parameterType="String" resultMap="userMap">
+	<!-- 전화번호 중복 체크 -->
+	<select id="phoneCheck" parameterType="String"
+		resultMap="userMap">
 		SELECT *
 		FROM user
 		WHERE phone=#{phone}
 	</select>
-	
-	<select id="emailCheck" parameterType="String" resultMap="userMap">
+
+	<!-- 이메일 중복 체크 -->
+	<select id="emailCheck" parameterType="String"
+		resultMap="userMap">
 		SELECT *
 		FROM user
 		WHERE email=#{email}
 	</select>
-	
+
+	<!-- 회원가입 -->
+	<insert id="registerUser" parameterType="User">
+		INSERT INTO user(id,
+		password, name, phone, post_code, road_address, detail_address, email,
+		bank_name, account)
+		VALUES(#{id}, #{password}, #{name}, #{phone},
+		#{postCode}, #{roadAddress}, #{detailAddress}, #{email}, #{bankName},
+		#{account})
+	</insert>
+
+
+	<!-- 회원 정보 수정 -->
+	<!-- 회원 정보 수정 시 본인일 경우 확인 -->
 	<select id="userCheck" parameterType="User" resultMap="userMap">
 		SELECT *
 		FROM user
 		WHERE id=#{id}
 		AND email=#{email}
 	</select>
-	
-	<insert id="registerUser" parameterType="User">
-		INSERT INTO user(id, password, name, phone, post_code, road_address, detail_address, email, bank_name, account)
-		VALUES(#{id}, #{password}, #{name}, #{phone}, #{postCode}, #{roadAddress}, #{detailAddress}, #{email}, #{bankName}, #{account})
-	</insert>
-	
-	<select id="findkakao" parameterType="java.util.HashMap" resultType = "User">
-		SELECT * FROM user
-		WHERE name = #{name}
-		AND id=#{id}
-	</select>
-	
-	<insert id="kakaoInsert" parameterType="java.util.HashMap">
-		INSERT INTO user(id, name, kakao)
-		VALUES(#{id}, #{name}, 'Y')
-	</insert>
-	
-	<select id="getMemberById" parameterType="String" resultMap="userMap">
-		SELECT * FROM user
-		WHERE id=#{id}
-	</select>
-	
+
+	<!-- 회원 정보 수정 -->
 	<update id="updateUser" parameterType="User">
 		UPDATE user
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="password != null">
 				password=#{password},
+			</if>
+			<if test="name != null">
 				name=#{name},
+			</if>
+			<if test="phone != null">
 				phone=#{phone},
+			</if>
+			<if test="email != null">
 				email=#{email}
-			WHERE id=#{id}
-	</update>
-	
-	<update id="updatePwd" parameterType="User">
-		UPDATE user
-		SET password=#{password}
+			</if>
+		</trim>
 		WHERE id=#{id}
 	</update>
 	
+	<!-- 회원 탈퇴 -->
 	<delete id="deleteUser" parameterType="User">
 		DELETE FROM user
-		WHERE id=#{id}
+		WHERE
+		id=#{id}
 	</delete>
 	
-	<select id="showAllUser" parameterType="User" resultMap="userMap">
-	SELECT * FROM user
-	WHERE enabled=1
-	LIMIT #{offset}, #{limit}
-	</select>
-	
-	<select id="count" resultType="int">
-	SELECT count(*) FROM user
-	WHERE enabled=1
-	</select>
-	
+	<!-- 아이디 찾기 -->
 	<select id="findId" parameterType="User" resultMap="userMap">
-	SELECT id
-	FROM user
-	WHERE name=#{name} AND email=#{email}
+		SELECT id
+		FROM user
+		WHERE name=#{name} AND email=#{email}
 	</select>
-	
+
+	<!-- 아이디&이메일 확인 -->
 	<select id="checkEmail" parameterType="User" resultMap="userMap">
-	SELECT * FROM user
-	WHERE id=#{id} AND email=#{email}
+		SELECT *
+		FROM user
+		WHERE id=#{id} AND email=#{email}
 	</select>
-	
+
+	<!-- 비밀번호 재설정 -->
+	<update id="updatePwd" parameterType="User">
+		UPDATE user
+		SET
+		password=#{password}
+		WHERE id=#{id}
+	</update>
+
+
+	<!-- 전체 회원 조회 -->
+	<select id="showAllUser" parameterType="User"
+		resultMap="userMap">
+		SELECT * FROM user
+		WHERE enabled=1
+		LIMIT #{offset}, #{limit}
+	</select>
+
+	<select id="count" resultType="int">
+		SELECT count(*) FROM user
+		WHERE
+		enabled=1
+	</select>
+
 </mapper>

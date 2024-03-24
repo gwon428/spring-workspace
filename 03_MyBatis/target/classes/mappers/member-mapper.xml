@@ -22,7 +22,6 @@
 	</select|insert|update|delete>
 	
  -->
-
 	<select id="showAllMember" resultMap="memberMap">
 		SELECT * FROM member
 	</select>

@@ -14,7 +14,8 @@ public class CategoryService {
 	@Autowired
 	private CategoryDAO dao;
 	
-	public List<Category> viewCategoryList(){
+	public List<Category> viewCategoryList() {
 		return dao.viewCategoryList();
 	}
+	
 }

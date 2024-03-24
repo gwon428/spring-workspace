@@ -68,8 +68,8 @@
 																				<input type="submit" value="LOG IN"
 																					class="btn mt-4" id="submit">
 																					
-																					<div style="background-color: pink; width: 100px; height: 30px; border: 1px solid black;">
-																					<a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=2aa4500445d4b2a832d23e0d819fb737&redirect_uri=http://localhost:8080/kakaologin&response_type=code">
+																					<div style="background-color: #f9e000; width: 200px; height: 30px; border-radius: 5px; margin-top: 15px; margin-left: 25px;">
+																					<a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=2aa4500445d4b2a832d23e0d819fb737&redirect_uri=http://localhost:8080/kakaologin&response_type=code" style="color: black;">
 																						<div class="kakao_i"></div>
 																						카카오톡으로 로그인
 																					</a>
@@ -150,23 +150,23 @@
 									</div>
 									<div id="MenuTwo">
 										<c:choose>
-											<c:when test="${user.phone == null}">
-												<a href="../updateUser" >회원 정보 수정</a>
+											<c:when test="${user.password != null}">
+												<a href="userUpdate">회원 정보 수정</a>
 											</c:when>
 											<c:otherwise>
-												<a href="userUpdate">회원 정보 수정</a>
+												<a href="../updatekakaoUser" >초기 회원 정보 수정</a>
 											</c:otherwise>
 										</c:choose>
 										
 										<c:choose>
-										<c:when test="${user.kakao == 'Y'}">
-										<!-- 나중에 kakao 회원 유무와 동시에 &&으로 phone이 null이 아닌 경우를 동시에 걸면
-										카카오 로그인은 했는데 회원 정보 수정을 한번도 하지 않은 경우로 판단하여 확인 절차없이 바로 탈퇴하도록
-										 -->
-										<a href="kakaounlink">카카오 회원 탈퇴</a>
+										<c:when test="${user.kakao == 'Y' && user.password == null}">
+											<!-- 나중에 kakao 회원 유무와 동시에 &&으로 phone이 null이 아닌 경우를 동시에 걸면
+											카카오 로그인은 했는데 회원 정보 수정을 한번도 하지 않은 경우로 판단하여 확인 절차없이 바로 탈퇴하도록
+											 -->
+											<a href="kakaounlink">카카오 회원 탈퇴</a>
 										</c:when>
 										<c:otherwise>
-										<a href="deleteUser">회원 탈퇴</a>
+											<a href="deleteUser">회원 탈퇴</a>
 										</c:otherwise>
 										
 										</c:choose>

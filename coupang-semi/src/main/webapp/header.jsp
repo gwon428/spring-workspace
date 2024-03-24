@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- 2. reset.css 추가 -->
 <link rel="stylesheet" href="resources/css/reset.css" />
 
@@ -14,17 +17,25 @@
 <!-- 아이콘 추가 : fontawesome -->
 <script src="https://kit.fontawesome.com/4602e82315.js"
 	crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
+	<sec:authentication var="user" property="principal" />
 
+	<!-- 1. HTML 작성 -->
 	<div class="tob-bar container">
 		<div class="tob-bar-left">
 			<a href="#">즐겨찾기</a> <a href="#">입점신청</a>
 		</div>
 		<div class="tob-bar-right">
-			<a href="#">로그인</a>
-			<a href="/register">회원가입</a>
+			<c:choose>
+				<c:when test="${user == 'anonymousUser'}">
+					<a href="/login">로그인</a>
+					<a href="/register">회원가입</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/logout">로그아웃</a>
+				</c:otherwise>
+			</c:choose>
 			<a href="#">고객센터</a>
 		</div>
 	</div>
@@ -39,9 +50,7 @@
             hover 같은 경우는 하위 태그로 존재해야 함!
         -->
 			<div class="category">
-				<div class="category-list">
-						
-				</div>
+				<div class="category-list"></div>
 			</div>
 		</div>
 		<div class="header-main">

@@ -37,7 +37,7 @@
 <main>
 <div id="sideMenu">
 			<a href="showReview" id="showReview">My Review</a> <a href="showQna">내 Q&A</a> <a
-				href="showCollect" id="showCollect">진행 상황</a> <a href="updateUser">회원
+				href="showCollect" id="showCollect">진행 상황</a> <a href="userUpdate">회원
 				정보 수정</a> <a href="deleteUser">회원 탈퇴</a> <a href="logout">로그아웃</a>
 		</div>
 		

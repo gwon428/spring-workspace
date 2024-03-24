@@ -1,8 +1,8 @@
 let pwdCheck = true;
 let nameCheck = true;
-let phoneCheck = false;
+let phoneCheck = true;
 let phoneDupCheck = false;
-let emailCheck = false;
+let emailCheck = true;
 let emailDupCheck = false;
 
 // 비밀번호 정규표현식

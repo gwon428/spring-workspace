@@ -37,9 +37,11 @@
 			<div class="insertQna" id="id">
 				<label>*아이디</label> <input class="form-control" name="id" id="id_input" value="${user.id}" readonly>
 			</div>
+			<c:if test="${user.password != null}">
 			<div class="insertQna" id="secret">
 				<label id="secretCheck">비밀글</label><input type="checkbox" name="secret" id="secret_input" value="Y">
 			</div> 
+			</c:if>
 		</div>
 			<div class="insertQna" id="title">
 				<label>*제목</label> <input class="form-control" name="title" id="title_input">
