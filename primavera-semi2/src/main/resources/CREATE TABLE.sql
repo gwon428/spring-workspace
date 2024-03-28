@@ -5,6 +5,7 @@ DROP TABLE qna;
 DROP TABLE collect;
 DROP TABLE user;
 
+SELECT * FROM user;
 CREATE TABLE user(
     id VARCHAR(20) NOT NULL UNIQUE,
     password VARCHAR(200) ,
@@ -17,7 +18,7 @@ CREATE TABLE user(
 	bank_name VARCHAR(20),
 	account VARCHAR(20),
     auth VARCHAR(10) DEFAULT 'MEMBER',
-    kakao CHAR(1) CHECK(secret IN('Y', 'N')) DEFAULT 'Y'
+    kakao CHAR(1) CHECK(kakao IN('Y', 'N')) DEFAULT 'N'
 );
 
 CREATE TABLE collect(
@@ -85,4 +86,5 @@ ALTER TABLE notice ADD CONSTRAINT notice_user
 	FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE;
 ALTER TABLE collect ADD CONSTRAINT collect_user
 	FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE;
-
+ALTER TABLE qna_answer ADD CONSTRAINT qna_answer
+	FOREIGN KEY(qna_num) REFERENCES qna(qna_num) ON DELETE CASCADE;

@@ -257,7 +257,7 @@ public class UserController {
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = (UserDetails) principal;
-		if (bcpe.matches(password, userDetails.getPassword())) {
+		if (bcpe.matches(password, userDetails.getPassword()) || password.equals(userDetails.getPassword())) {
 			service.deleteUser(userDetails);
 			SecurityContextHolder.clearContext();
 			return "redirect:/";

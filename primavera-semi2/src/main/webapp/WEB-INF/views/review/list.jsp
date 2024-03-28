@@ -125,7 +125,7 @@
 					<c:forEach begin="${paging.startPage}" end="${paging.endPage}"
 						var="pageNum">
 						<li class="page-item ${pageNum == paging.page ? 'active' : ''}"><a
-							class="page-link" href="/review/list?page=${pageNum}&sort=${paging.sort}&searchType=${paging.searchType}&searchKeyword=${encodedSearchKeyword}">${pageNum}</a>
+							class="page-link" href="/review/list?page=${pageNum}&sort=${paging.sort}&searchType=${searchType}&searchKeyword=${encodedSearchKeyword}">${pageNum}</a>
 						</li>
 					</c:forEach>
 

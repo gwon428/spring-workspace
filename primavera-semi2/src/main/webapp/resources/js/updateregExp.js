@@ -1,3 +1,4 @@
+
 let pwdCheck = true;
 let nameCheck = true;
 let phoneCheck = true;

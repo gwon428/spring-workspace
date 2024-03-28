@@ -365,14 +365,6 @@ h6 span{
 	text-align: center;
 }
 
-
-
-.kakao_i{
-	background: url(../../../resources/images/kakao_i.png);
-	z-index: 999;
-}
-
-
 #background{
 	width: 100vw;
 	height: 100vh;

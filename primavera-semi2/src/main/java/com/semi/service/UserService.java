@@ -119,6 +119,7 @@ public class UserService implements UserDetailsService {
 		User result = dao.findkakao(userInfo);
 		if (result == null) {
 			dao.kakaoinsert(userInfo);
+			
 			return dao.findkakao(userInfo);
 			// 가입 후 픽업 신청 시 회원 정보를 수정하도록.
 			// 이 때 비밀번호 설정해도 저장 안 되는 이유?가 뭔지..

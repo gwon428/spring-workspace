@@ -27,7 +27,6 @@ public class UserLoginFailHandler implements AuthenticationFailureHandler {
 			String loginFailMsg = "아이디 또는 비밀번호가 틀립니다.";
 			alertAndGo(response, loginFailMsg, url);
 		} else if (exception instanceof DisabledException) {
-			request.setAttribute("loginFailMsg", "비활성화된 계정입니다..");
 			String loginFailMsg = "비활성화된 계정입니다..";
 			alertAndGo(response, loginFailMsg, url);
 		}

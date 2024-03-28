@@ -1,0 +1,26 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="animal">
+	<insert id="insert" parameterType="Animal">
+	INSERT INTO animal(name, age)
+	VALUES(#{name}, #{age})
+	</insert>
+	
+	<select id="select" parameterType="int" resultType="Animal">
+	SELECT * FROM animal
+	<if test="no!=0">
+	WHERE no=#{no}
+	</if>
+	</select>
+	
+	<update id="update" parameterType="Animal">
+	UPDATE animal
+	SET
+	name=#{name}, age=#{age}
+	WHERE no=#{no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+	DELETE FROM animal
+	WHERE no=#{no}
+	</delete>
+</mapper>
